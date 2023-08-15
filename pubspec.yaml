@@ -36,8 +36,9 @@ dependencies:
   # pdf: ^3.10.1
   # open_file: ^3.3.2
   screenshot: 
-  image_gallery_saver: ^2.0.2
-  permission_handler: ^10.3.0   
+  image_gallery_saver: 
+  permission_handler:
+  share_plus:    
 
 
   # The following adds the Cupertino Icons font to your application.

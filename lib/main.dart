@@ -1,7 +1,7 @@
-import 'package:banner_generate/banner/banner_text_insert.dart';
+// import 'package:banner_generate/banner/banner_text_insert.dart';
 import 'package:flutter/material.dart';
 
-import 'banner/banner_downloard.dart';
+// import 'banner/banner_downloard.dart';
 import 'dashboard.dart';
 
 void main() {

@@ -6,6 +6,7 @@ import 'package:banner_generate/banner/db_helper.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 // import 'package:image_gallery_saver/image_gallery_saver.dart';
 
@@ -15,6 +16,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'dart:ui' as ui;
 
 class BannerDownloard extends StatefulWidget {
   const BannerDownloard({super.key});
@@ -25,7 +27,7 @@ class BannerDownloard extends StatefulWidget {
 
 class _BannerDownloardState extends State<BannerDownloard> {
   DBHelper? dbHelper;
-  late Future<List<BannerModel>> banner;
+  Future<List<BannerModel>>? banner;
   @override
   void initState() {
     // TODO: implement initState
@@ -38,22 +40,22 @@ class _BannerDownloardState extends State<BannerDownloard> {
     banner = dbHelper!.read();
   }
 
-  final controller = ScreenshotController();
+  // final controller = ScreenshotController();
+  GlobalKey ssKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     // var size = MediaQuery.of(context).size;
-    return Screenshot(
-      controller: controller,
-      child: SafeArea(child: Scaffold(body: buildStack())),
-    );
+    return SafeArea(
+        child:
+            RepaintBoundary(key: ssKey, child: Scaffold(body: buildStack())));
   }
 
-  Future saveAndShareImage(bytes) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final image = File('${directory.path}/flutter.png');
-    image.writeAsBytesSync(bytes);
-    await Share.shareXFiles(image.path as List<XFile>);
-  }
+  // Future saveAndShareImage(bytes) async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   final image = File('${directory.path}/flutter.png');
+  //   image.writeAsBytesSync(bytes);
+  //   await Share.shareXFiles(image.path as List<XFile>);
+  //}
 
   Future<String> saveImage(bytes) async {
     await [Permission.storage].request();
@@ -62,6 +64,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
         .replaceAll('.', '-')
         .replaceAll(':', '-');
     final name = 'screenshot_$time';
+
     final resilt = await ImageGallerySaver.saveImage(bytes, name: name);
     return resilt['filePath'];
   }
@@ -206,15 +209,27 @@ class _BannerDownloardState extends State<BannerDownloard> {
                             child: button('Dowmloard...', () async {
                               // final image =
                               //     await controller.capture(text());
-                              final image = await controller
-                                  .captureFromWidget(buildStack())
-                                  .then((value) {
-                                print('true');
+                              // final image = await controller
+                              //     .captureFromWidget(buildStack())
+                              //     .then((value) {
+                              //   print('true');
+                              // }).onError((error, stackTrace) {
+                              //   print('false');
+                              // });
+                              // await saveAndShareImage(image);
+                              // if (image == null) return await
+                              RenderRepaintBoundary boundary =
+                                  ssKey.currentContext?.findRenderObject()
+                                      as RenderRepaintBoundary;
+                              ui.Image image =
+                                  await boundary.toImage(pixelRatio: 3.0);
+                              ByteData? bytes = await image.toByteData(
+                                  format: ui.ImageByteFormat.png);
+                              saveImage(bytes).then((value) {
+                                print('done');
                               }).onError((error, stackTrace) {
-                                print('false');
+                                print('error');
                               });
-                              await saveAndShareImage(image);
-                              if (image == null) return await saveImage(image);
                               // final pdfFile = await Pdf.generateCreated();
                               // Pdf.openFile(pdfFile);
                             }))

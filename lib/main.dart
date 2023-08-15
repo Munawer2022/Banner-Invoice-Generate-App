@@ -1,4 +1,5 @@
 // import 'package:banner_generate/banner/banner_text_insert.dart';
+import 'package:banner_generate/banner/banner_downloard.dart';
 import 'package:flutter/material.dart';
 
 // import 'banner/banner_downloard.dart';
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: Dahboard());
+        home: BannerDownloard());
   }
 }

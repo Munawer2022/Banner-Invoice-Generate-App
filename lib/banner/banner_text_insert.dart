@@ -1,5 +1,5 @@
 import 'package:banner_generate/banner/banner_model.dart';
-import 'package:banner_generate/banner/banner_template.dart';
+import 'package:banner_generate/banner/banner_downloard.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +42,10 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -72,7 +76,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: priceEditingController,
-                    hintText: 'price',
+                    hintText: 'Price',
                   ),
                   SizedBox(
                     height: 10,
@@ -80,13 +84,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter package';
+                        return 'Enter Package Include';
                       } else {
                         return null;
                       }
                     },
                     controller: packageEditingController,
-                    hintText: 'package',
+                    hintText: 'Package Include',
                   ),
                   SizedBox(
                     height: 10,
@@ -94,13 +98,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter date';
+                        return 'Enter Date';
                       } else {
                         return null;
                       }
                     },
                     controller: dateEditingController,
-                    hintText: 'date',
+                    hintText: 'Date',
                   ),
                   SizedBox(
                     height: 10,
@@ -108,13 +112,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter month';
+                        return 'Enter Month';
                       } else {
                         return null;
                       }
                     },
                     controller: monthEditingController,
-                    hintText: 'month',
+                    hintText: 'Month',
                   ),
                   SizedBox(
                     height: 10,
@@ -122,61 +126,38 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter num';
+                        return 'Enter Number';
                       } else {
                         return null;
                       }
                     },
                     controller: numEditingController,
-                    hintText: 'number',
+                    hintText: 'Number',
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: 45,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          AppNavigator().push(context, const BannerTemplate());
-                          print(dbHelper!.read().then((value) {
-                            print('done');
-                          }).onError((error, stackTrace) {
-                            print('error');
-                          }));
-
-                          dbHelper
-                              ?.insert(BannerModel(
-                                  name: textEditingController.text,
-                                  dates: dateEditingController.text,
-                                  month: monthEditingController.text,
-                                  no: numEditingController.text,
-                                  package: packageEditingController.text,
-                                  price: priceEditingController.text))
-                              .then((value) {
-                            print('true');
-                          }).onError((error, stackTrace) {
-                            print('false');
-                          });
-                          // var a = dbHelper?.read();
-                          // print(a);
-                          // if (_formKey.currentState!.validate()) {
-                          //   load = true;
-                          //   dbHelpers
-                          //       ?.insert(BannerModel(
-                          //           name: textEditingController.text))
-                          //       .then((value) {
-                          //     load = false;
-                          //   }).onError((error, stackTrace) {
-                          //     load = false;
-                          //   });
-
-                          //   // AppNavigator()
-                          //   //     .push(context, const BannerTemplate());
-                          // }
-                        },
-                        child: const Text('continue...')),
-                  )
+                  button(
+                    'continue...',
+                    () async {
+                      if (_formKey.currentState!.validate()) {
+                        dbHelper
+                            ?.insert(BannerModel(
+                                name: textEditingController.text,
+                                dates: dateEditingController.text,
+                                month: monthEditingController.text,
+                                no: numEditingController.text,
+                                package: packageEditingController.text,
+                                price: priceEditingController.text))
+                            .then((value) {
+                          AppNavigator().push(context, const BannerDownloard());
+                          print('true');
+                        }).onError((error, stackTrace) {
+                          print('false');
+                        });
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

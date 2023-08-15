@@ -47,6 +47,7 @@ class TextFieldForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.next,
       validator: validator,
       decoration: InputDecoration(hintText: hintText
           // border: UnderlineInputBorder(
@@ -56,4 +57,19 @@ class TextFieldForm extends StatelessWidget {
       controller: controller,
     );
   }
+}
+
+Widget button(text, onPressed) {
+  return SizedBox(
+    height: 55,
+    width: double.infinity,
+    child: ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.blue.shade300)),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        )),
+  );
 }

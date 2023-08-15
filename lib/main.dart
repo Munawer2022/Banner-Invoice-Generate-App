@@ -1,7 +1,8 @@
 import 'package:banner_generate/banner/banner_text_insert.dart';
 import 'package:flutter/material.dart';
 
-import 'banner/banner_template.dart';
+import 'banner/banner_downloard.dart';
+import 'dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: BannerTextInsert());
+        home: Dahboard());
   }
 }

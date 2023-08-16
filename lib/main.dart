@@ -3,6 +3,8 @@ import 'package:banner_generate/banner/banner_downloard.dart';
 import 'package:flutter/material.dart';
 
 // import 'banner/banner_downloard.dart';
+import 'banner/2banner_dounloard.dart';
+import 'banner/banner_template.dart';
 import 'dashboard.dart';
 
 void main() {
@@ -17,6 +19,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: BannerDownloard());
+        home: Dahboard());
   }
 }

@@ -33,12 +33,11 @@ dependencies:
     sdk: flutter
   sqflite: ^2.2.8+4
   path_provider: ^2.1.0
-  # pdf: ^3.10.1
-  # open_file: ^3.3.2
+  pdf:
+  open_file: 
   screenshot: 
   image_gallery_saver: 
   permission_handler:
-  share_plus:    
 
 
   # The following adds the Cupertino Icons font to your application.

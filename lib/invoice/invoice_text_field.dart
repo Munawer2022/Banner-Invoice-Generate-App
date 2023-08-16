@@ -1,20 +1,20 @@
 import 'package:banner_generate/banner/banner_model.dart';
 import 'package:banner_generate/banner/banner_downloard.dart';
+import 'package:banner_generate/invoice/invoice_db_helper.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 
-import 'db_helper.dart';
+import 'invoice_download.dart';
 
-class BannerTextInsert extends StatefulWidget {
-  BannerTextInsert({super.key});
+class InvoiceTextInsert extends StatefulWidget {
+  InvoiceTextInsert({super.key});
 
   @override
-  State<BannerTextInsert> createState() => _BannerTextInsertState();
+  State<InvoiceTextInsert> createState() => _InvoiceTextInsertState();
 }
 
-class _BannerTextInsertState extends State<BannerTextInsert> {
+class _InvoiceTextInsertState extends State<InvoiceTextInsert> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController priceEditingController = TextEditingController();
   TextEditingController packageEditingController = TextEditingController();
@@ -28,16 +28,16 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
     textEditingController.dispose();
   }
 
-  DBHelper? dbHelper;
+  InvoiceDBHelper? invoiceDBHelper;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    dbHelper = DBHelper();
+    invoiceDBHelper = InvoiceDBHelper();
   }
 
   final _formKey = GlobalKey<FormState>();
-  bool load = false;
+  // bool load = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -146,7 +146,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                     'continue...',
                     () async {
                       if (_formKey.currentState!.validate()) {
-                        dbHelper
+                        invoiceDBHelper
                             ?.insert(BannerModel(
                                 name: textEditingController.text,
                                 dates: dateEditingController.text,
@@ -155,7 +155,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                                 package: packageEditingController.text,
                                 price: priceEditingController.text))
                             .then((value) {
-                          AppNavigator().push(context, const BannerDownloard());
+                          AppNavigator().push(context, const InvoiceDownload());
                           print('true');
                         }).onError((error, stackTrace) {
                           print('false');

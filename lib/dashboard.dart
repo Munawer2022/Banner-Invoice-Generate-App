@@ -1,3 +1,4 @@
+import 'package:banner_generate/invoice/invoice_text_field.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,9 @@ class Dahboard extends StatelessWidget {
             SizedBox(
               height: size.height * 0.04,
             ),
-            button('invoice', () {})
+            button('invoice', () {
+              AppNavigator().push(context, InvoiceTextInsert());
+            })
           ],
         ),
       ),

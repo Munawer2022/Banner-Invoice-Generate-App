@@ -73,3 +73,17 @@ Widget button(text, onPressed) {
         )),
   );
 }
+
+snackbar(text, context) {
+  var snackBar = SnackBar(
+    backgroundColor: Colors.green.shade300,
+    content: SizedBox(
+      height: MediaQuery.of(context).size.height * 0.04,
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}

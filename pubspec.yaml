@@ -38,6 +38,7 @@ dependencies:
   screenshot: 
   image_gallery_saver: 
   permission_handler:
+  carousel_slider: ^4.2.1 
 
 
   # The following adds the Cupertino Icons font to your application.

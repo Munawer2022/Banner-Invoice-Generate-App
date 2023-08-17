@@ -28,23 +28,68 @@ class BannerTemplate extends StatelessWidget {
                   return Column(
                     children: [
                       Container(
-                          height: size.height * 0.3,
-                          width: double.infinity,
-                          // foregroundDecoration: BoxDecoration(
-                          //   image: DecorationImage(
-                          //     image: AssetImage('assets/images/template_bak.jpg'),
-                          //     fit: BoxFit.cover,
-                          //   ),
-                          // ),
-                          child: InkWell(
-                            onTap: () {
-                              AppNavigator().push(context, BannerTextInsert());
-                            },
-                            child: Image.asset(
-                              'assets/images/template_bak.jpg',
-                              fit: BoxFit.cover,
+                        height: size.height * 0.3,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/template_bak.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        // child: InkWell(
+                        //   onTap: () {
+                        //     AppNavigator().push(context, BannerTextInsert());
+                        //   },
+                        //   child: Image.asset(
+                        //     'assets/images/template_bak.jpg',
+                        //     fit: BoxFit.cover,
+                        //   ),
+                        // )
+                      ),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  shape: BoxShape.circle),
+                              child: Center(
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.remove_red_eye,
+                                      size: 30,
+                                      color: Colors.black,
+                                    )),
+                              ),
                             ),
-                          )),
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  shape: BoxShape.circle),
+                              child: Center(
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      CupertinoIcons.rectangle_expand_vertical,
+                                      size: 30,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: size.height * 0.1,
                       ),

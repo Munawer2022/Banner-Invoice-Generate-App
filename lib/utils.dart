@@ -46,15 +46,31 @@ class TextFieldForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textInputAction: TextInputAction.next,
-      validator: validator,
-      decoration: InputDecoration(hintText: hintText
-          // border: UnderlineInputBorder(
-          //     borderRadius: BorderRadius.all(Radius.circular(50)),
-          //     borderSide: BorderSide())
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.black,
+        primaryColorDark: Colors.black,
+      ),
+      child: Material(
+        borderRadius: const BorderRadius.all(Radius.circular(18)),
+        elevation: 5,
+        shadowColor: Color(0XFF000000),
+        child: TextFormField(
+          textInputAction: TextInputAction.next,
+          validator: validator,
+          decoration: InputDecoration(
+            hintText: hintText,
+            border: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(18)),
+            ),
+
+            // border: UnderlineInputBorder(
+            //     borderRadius: BorderRadius.all(Radius.circular(50)),
+            //     borderSide: BorderSide())
           ),
-      controller: controller,
+          controller: controller,
+        ),
+      ),
     );
   }
 }

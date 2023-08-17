@@ -11,6 +11,7 @@ class BannerTemplate extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+          title: Text('Choose Templat'),
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(
@@ -79,7 +80,10 @@ class BannerTemplate extends StatelessWidget {
                                   shape: BoxShape.circle),
                               child: Center(
                                 child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      AppNavigator()
+                                          .push(context, BannerTextInsert());
+                                    },
                                     icon: Icon(
                                       CupertinoIcons.rectangle_expand_vertical,
                                       size: 30,

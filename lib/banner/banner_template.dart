@@ -9,12 +9,18 @@ class BannerTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List image = ['template_bak.jpg', '4template_bak.jpg'];
+    List image = [
+      'template_bak.jpg',
+      '4template_bak.jpg',
+      'flutter_03.png',
+      'flutter_02.png',
+      'flutter_01.png'
+    ];
     List view = [ViewBanner(), ViewBanner()];
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-          title: Text('Choose Templat'),
+          title: Text('Choose Template'),
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(

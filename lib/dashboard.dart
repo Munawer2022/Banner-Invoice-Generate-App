@@ -65,7 +65,7 @@ class _DahboardState extends State<Dahboard> {
                     ),
                   ),
                   child: Image.asset(
-                    'assets/images/2bannerbac.jpg',
+                    'assets/images/dashboard_back.jpg',
                     height: 1200,
                     width: 1200,
                     fit: BoxFit.cover,
@@ -111,13 +111,13 @@ class _DahboardState extends State<Dahboard> {
                           items: [
                             newContainer(
                               context,
-                              'assets/images/horse.jpg',
+                              'assets/images/banner_back.png',
                               BannerTemplate(),
                               'Banner',
                             ),
                             newContainer(
                               context,
-                              'assets/images/wheel.jpg',
+                              'assets/images/invoice_back.png',
                               InvoiceTextInsert(),
                               'Invoice',
                             ),
@@ -197,7 +197,7 @@ Widget newContainer(BuildContext context, image, page, text) {
         color: Colors.black87,
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
-          // opacity: .7,
+          // opacity: .3,
           image: ExactAssetImage(image),
           fit: BoxFit.cover,
         ),
@@ -209,14 +209,15 @@ Widget newContainer(BuildContext context, image, page, text) {
         //   ),
         // ],
       ),
-      child: Center(
-          child: Text(
-        text,
-        style: Theme.of(context)
-            .textTheme
-            .headlineMedium
-            ?.copyWith(color: Colors.white, fontFamily: 'BebasNeue'),
-      )),
+      // child: Center(
+      //     child: Text(
+      //   text,
+      //   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+      //       color: Colors.white,
+      //       fontWeight: FontWeight.bold,
+      //       fontFamily: 'BebasNeue',
+      //       fontStyle: FontStyle.italic),
+      // )),
     ),
   );
 }

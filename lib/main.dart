@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'banner/2banner_dounloard.dart';
 import 'banner/3banner_download.dart';
 import 'banner/6banner_download.dart';
+import 'banner/7banner_download.dart';
 import 'banner/banner_template.dart';
 import 'dashboard.dart';
 
@@ -21,6 +22,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: SixBannerDownload());
+        home: BannerDownloard());
   }
 }

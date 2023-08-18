@@ -9,40 +9,65 @@ class ThreeBannerDownload extends StatelessWidget {
         child: Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            'assets/images/2bannerbac.jpg',
-            height: 550,
-            // width: double.infinity,
-            fit: BoxFit.cover,
+          ColorFiltered(
+            colorFilter: ColorFilter.mode(Colors.teal, BlendMode.color),
+            child: Image.asset(
+              'assets/images/5bannerbac.jpg',
+              height: 550,
+              // width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
           Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/1banneriamge.jpg'),
-                      fit: BoxFit.cover,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 250,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/3banner_iamge.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                        border: Border.all(
+                          color: Colors.white,
+                          //<-- SEE HERE
+                          width: 2,
+                        ),
+                      ),
                     ),
-                    border: Border.all(
-                      color: Colors.white,
-                      //<-- SEE HERE
-                      width: 2,
-                    ),
-                  ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        color: Colors.teal,
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Center(
+                          child: Text(
+                            'UMRAH',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 236, 196, 62),
+                                fontSize: 40,
+                                fontFamily: 'Maragsâ',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               SizedBox(
                 height: 5,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
@@ -53,20 +78,21 @@ class ThreeBannerDownload extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               'OSCONN HOTAL',
                               style: TextStyle(
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
                                   fontSize: 11),
                             ),
                             Text(
                               '(700 METER HIJRA ROAD)',
                               style: TextStyle(
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
                                   fontSize: 11),
                             ),
                           ],
@@ -79,28 +105,39 @@ class ThreeBannerDownload extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               'OSCONN HOTAL',
                               style: TextStyle(
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
                                   fontSize: 11),
                             ),
                             Text(
                               '(700 METER HIJRA ROAD)',
                               style: TextStyle(
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
                                   fontSize: 11),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    Divider(
-                      thickness: 3,
+                    Stack(
+                      children: [
+                        Divider(
+                          thickness: 3,
+                        ),
+                        Divider(
+                          indent: 100,
+                          endIndent: 100,
+                          color: Colors.black,
+                          thickness: 3,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 10,
@@ -116,15 +153,16 @@ class ThreeBannerDownload extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               '235,000',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 16),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 18),
                             ),
                           ],
                         ),
@@ -132,19 +170,20 @@ class ThreeBannerDownload extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Sharing',
+                              'Quad',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               '235,000',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 16),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 18),
                             ),
                           ],
                         ),
@@ -152,19 +191,20 @@ class ThreeBannerDownload extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Sharing',
+                              'Triple',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               '235,000',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 16),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 18),
                             ),
                           ],
                         ),
@@ -172,19 +212,20 @@ class ThreeBannerDownload extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Sharing',
+                              'Double',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 11),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 12),
                             ),
                             Text(
                               '235,000',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 16),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 18),
                             ),
                           ],
                         ),
@@ -204,24 +245,60 @@ class ThreeBannerDownload extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 8),
+                                  fontFamily: 'Roboto',
+                                  fontSize: 11),
                             ),
                             Text(
-                              'Air Ticket (FlyDubai)\nHotel Accommodation\nFull Transport by Bus\nVisa + Insurance\nZiyarat\n(Mak,Mad, Taif,Badar)',
+                              'Air Ticket (FlyDubai) Hotel Accommodation\nFull Transport by Bus Visa + Insurance\nZiyarat (Mak,Mad, Taif,Badar)',
                               style: TextStyle(
                                   color: Colors.white,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 8),
+                                  fontWeight: FontWeight.w100,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 9),
                             ),
                           ],
                         ),
-                        Text(
-                          'flydubai',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w900,
-                              fontSize: 26),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              '20',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 196, 62),
+                                  fontSize: 70,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: 'Maragsâ',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '/ Days',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
+                        // Container(
+                        //   height: 70,
+                        //   width: 70,
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.circle,
+                        //       color: Colors.black,
+                        //       border:
+                        //           Border.all(width: 3, color: Colors.white)),
+                        // )
+                        // Text(
+                        //   'flydubai',
+                        //   style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontWeight: FontWeight.w900,
+                        //       fontSize: 26),
+                        // ),
                       ],
                     ),
                   ],
@@ -241,45 +318,6 @@ class ThreeBannerDownload extends StatelessWidget {
                 )),
               ),
             ],
-          ),
-          Positioned(
-            right: -30,
-            top: -15,
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  border: Border.all(
-                    color: Colors.white,
-                    //<-- SEE HERE
-                    width: 4,
-                  ),
-                  shape: BoxShape.circle),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '20',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 40),
-                    ),
-                    Text(
-                      'Days',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ),
         ],
       ),

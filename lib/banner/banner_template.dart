@@ -1,4 +1,5 @@
 import 'package:banner_generate/banner/banner_text_insert.dart';
+import 'package:banner_generate/banner/view_banner.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ class BannerTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List image = ['template_bak.jpg', '4template_bak.jpg'];
+    List view = [ViewBanner(), ViewBanner()];
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -24,29 +27,33 @@ class BannerTemplate extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-                itemCount: 4,
+                itemCount: image.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Container(
                         height: size.height * 0.3,
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        foregroundDecoration: BoxDecoration(
+                          // gradient: LinearGradient(
+                          //   colors: [
+                          //     Colors.transparent,
+                          //     Colors.white.withOpacity(.5)
+                          //   ],
+                          //   // begin: Alignment.topCenter,
+                          //   end: Alignment.center,
+                          //   stops: [0.11, 1],
+                          // ),
+
                           image: DecorationImage(
-                            image: AssetImage('assets/images/template_bak.jpg'),
+                            image: AssetImage('assets/images/${image[index]}'),
                             fit: BoxFit.cover,
                           ),
                         ),
-
-                        // child: InkWell(
-                        //   onTap: () {
-                        //     AppNavigator().push(context, BannerTextInsert());
-                        //   },
-                        //   child: Image.asset(
-                        //     'assets/images/template_bak.jpg',
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        // )
+                        // child: Image(
+                        //   image: AssetImage('assets/images/${image[index]}'),
+                        //   fit: BoxFit.cover,
+                        // ),
                       ),
                       SizedBox(
                         height: size.height * 0.02,
@@ -64,7 +71,9 @@ class BannerTemplate extends StatelessWidget {
                                   shape: BoxShape.circle),
                               child: Center(
                                 child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      AppNavigator().push(context, view[index]);
+                                    },
                                     icon: Icon(
                                       Icons.remove_red_eye,
                                       size: 30,
@@ -85,7 +94,7 @@ class BannerTemplate extends StatelessWidget {
                                           .push(context, BannerTextInsert());
                                     },
                                     icon: Icon(
-                                      CupertinoIcons.rectangle_expand_vertical,
+                                      Icons.edit,
                                       size: 30,
                                       color: Colors.black,
                                     )),

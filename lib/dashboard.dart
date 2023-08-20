@@ -80,15 +80,41 @@ class _DahboardState extends State<Dahboard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Dashboard',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(
-                                    color: Colors.white,
-                                    fontFamily: 'BebasNeue'),
+                          Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Text(
+                                'Dashboard',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                        fontStyle: FontStyle.italic,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontFamily: 'BebasNeue'),
+                              ),
+                              Text(
+                                'Dashboard',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge
+                                    ?.copyWith(
+                                        fontSize: 60,
+                                        fontStyle: FontStyle.italic,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white.withOpacity(.1),
+                                        fontFamily: 'BebasNeue'),
+                              ),
+                            ],
                           ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 100),
+                            child: Divider(
+                              color: Colors.white.withOpacity(.1),
+                            ),
+                          )
                         ],
                       ),
                       CarouselSlider(
@@ -122,16 +148,29 @@ class _DahboardState extends State<Dahboard> {
                               'Invoice',
                             ),
                           ]),
-                      Center(
-                        child: Text(
-                          'Banner & Invoice\nGenerater',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                  color: Colors.white, fontFamily: 'BebasNeue'),
-                        ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 70),
+                            child: Divider(
+                              color: Colors.white.withOpacity(.1),
+                            ),
+                          ),
+                          Center(
+                            child: Text(
+                              'Banner & Invoice\nGenerater\n-',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontFamily: 'BebasNeue'),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -20,7 +20,14 @@ class BannerTemplate extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-          title: Text('Choose Template'),
+          title: Text(
+            'Choose Template',
+            style: TextStyle(
+                fontStyle: FontStyle.italic,
+                // fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'BebasNeue'),
+          ),
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(
@@ -56,9 +63,68 @@ class BannerTemplate extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        // child: Image(
-                        //   image: AssetImage('assets/images/${image[index]}'),
-                        //   fit: BoxFit.cover,
+                        // child: Stack(
+                        //   children: [
+                        //     Image(
+                        //       height: size.height * 0.3,
+                        //       width: double.infinity,
+                        //       image:
+                        //           AssetImage('assets/images/${image[index]}'),
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //     Align(
+                        //       alignment: Alignment.centerRight,
+                        //       child: Container(
+                        //         height: double.infinity,
+                        //         width: 80,
+                        //         color: Colors.grey.shade300,
+                        //         child: Column(
+                        //           mainAxisAlignment:
+                        //               MainAxisAlignment.spaceBetween,
+                        //           children: [
+                        //             Container(
+                        //               height: 50,
+                        //               width: 50,
+                        //               decoration: BoxDecoration(
+                        //                   color: Colors.grey.shade300,
+                        //                   shape: BoxShape.circle),
+                        //               child: Center(
+                        //                 child: IconButton(
+                        //                     onPressed: () {
+                        //                       AppNavigator()
+                        //                           .push(context, view[index]);
+                        //                     },
+                        //                     icon: Icon(
+                        //                       Icons.remove_red_eye,
+                        //                       size: 30,
+                        //                       color: Colors.black,
+                        //                     )),
+                        //               ),
+                        //             ),
+                        //             Container(
+                        //               height: 50,
+                        //               width: 50,
+                        //               decoration: BoxDecoration(
+                        //                   color: Colors.grey.shade300,
+                        //                   shape: BoxShape.circle),
+                        //               child: Center(
+                        //                 child: IconButton(
+                        //                     onPressed: () {
+                        //                       AppNavigator().push(
+                        //                           context, BannerTextInsert());
+                        //                     },
+                        //                     icon: Icon(
+                        //                       Icons.edit,
+                        //                       size: 30,
+                        //                       color: Colors.black,
+                        //                     )),
+                        //               ),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
                         // ),
                       ),
                       SizedBox(

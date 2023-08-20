@@ -155,7 +155,8 @@ class _InvoiceTextInsertState extends State<InvoiceTextInsert> {
                                 package: packageEditingController.text,
                                 price: priceEditingController.text))
                             .then((value) {
-                          AppNavigator().push(context, const InvoiceDownload());
+                          AppNavigator()
+                              .push(context, const InvoiceDownloard());
                           print('true');
                         }).onError((error, stackTrace) {
                           print('false');

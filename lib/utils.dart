@@ -103,3 +103,17 @@ snackbar(text, context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+errorSnackbar(text, context) {
+  var snackBar = SnackBar(
+    backgroundColor: Colors.red.shade300,
+    content: SizedBox(
+      height: MediaQuery.of(context).size.height * 0.04,
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}

@@ -8,10 +8,12 @@ class ViewBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black.withOpacity(.3),
         appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
             leading: IconButton(
+              color: Colors.white,
               onPressed: () {
                 Navigator.pop(context);
               },

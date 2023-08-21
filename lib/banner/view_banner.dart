@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ViewBanner extends StatelessWidget {
-  const ViewBanner({super.key});
+  final image;
+  const ViewBanner({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black.withOpacity(.3),
+        backgroundColor: Colors.black,
         appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
@@ -19,17 +20,14 @@ class ViewBanner extends StatelessWidget {
               },
               icon: const Icon(CupertinoIcons.back),
             )),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Image.asset(
-              'assets/images/4template_bak.jpg',
+        body: Center(
+          child: Image.asset(
+            'assets/images/$image',
 
-              // height: double.negativeInfinity,
+            // height: double.negativeInfinity,
 
-              // width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            // width: double.infinity,
+            fit: BoxFit.cover,
           ),
         ),
       ),

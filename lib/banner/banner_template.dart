@@ -16,7 +16,7 @@ class BannerTemplate extends StatelessWidget {
       'flutter_02.png',
       'flutter_01.png'
     ];
-    List view = [ViewBanner(), ViewBanner()];
+    // List view = [ViewBanner(), ViewBanner()];
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -144,7 +144,8 @@ class BannerTemplate extends StatelessWidget {
                               child: Center(
                                 child: IconButton(
                                     onPressed: () {
-                                      AppNavigator().push(context, view[index]);
+                                      AppNavigator().push(context,
+                                          ViewBanner(image: image[index]));
                                     },
                                     icon: Icon(
                                       Icons.remove_red_eye,

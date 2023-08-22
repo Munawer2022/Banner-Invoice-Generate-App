@@ -4,6 +4,12 @@ import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '2banner_dounloard.dart';
+import '3banner_download.dart';
+import '4banner_download.dart';
+import '6banner_download.dart';
+import '7banner_download.dart';
+
 class BannerTemplate extends StatelessWidget {
   const BannerTemplate({super.key});
 
@@ -16,7 +22,13 @@ class BannerTemplate extends StatelessWidget {
       'flutter_02.png',
       'flutter_01.png'
     ];
-    // List view = [ViewBanner(), ViewBanner()];
+    List view = [
+      SecondBannerDownload(),
+      ThreeBannerDownload(),
+      ThirdBannerDownload(),
+      SixBannerDownload(),
+      SevenBannerDownload(),
+    ];
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -144,8 +156,9 @@ class BannerTemplate extends StatelessWidget {
                               child: Center(
                                 child: IconButton(
                                     onPressed: () {
-                                      AppNavigator().push(context,
-                                          ViewBanner(image: image[index]));
+                                      AppNavigator().push(context, view[index]);
+                                      // ViewBanner(image:
+                                      //  image[index]
                                     },
                                     icon: Icon(
                                       Icons.remove_red_eye,

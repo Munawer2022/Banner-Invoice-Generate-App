@@ -44,32 +44,6 @@ class SixBannerDownload extends StatelessWidget {
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 20),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         '7',
-              //         style: TextStyle(
-              //             color: Colors.white,
-              //             fontSize: 60,
-              //             fontFamily: 'Roboto',
-              //             fontWeight: FontWeight.bold),
-              //       ),
-              //       Padding(
-              //         padding: const EdgeInsets.only(top: 15),
-              //         child: Text(
-              //           'Nights',
-              //           style: TextStyle(
-              //               color: Colors.white,
-              //               fontSize: 20,
-              //               fontFamily: 'Roboto',
-              //               fontWeight: FontWeight.w900),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               SizedBox(
                 height: 100,
               ),
@@ -84,77 +58,54 @@ class SixBannerDownload extends StatelessWidget {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'PKR ',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto',
-                      ),
-                    ),
-                    Text(
-                      '44,000',
-                      style: TextStyle(
-                          color: Color(0xff03646A),
-                          fontSize: 24,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w900),
-                    ),
-                    Text(
-                      ' Per\n Person',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'INCLUSIONS',
-                      style: TextStyle(
-                          color: Color(0xff03646A),
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 200,
-                    ),
-                    Text(
-                      '21491279479',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'helloworld@gmail.com',
-                      style: TextStyle(
-                          color: Color(0xffFFD53D),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
             ],
+          ),
+          Positioned(
+            top: 230,
+            left: 20,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'PKR ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                  ),
+                ),
+                Text(
+                  '44,000',
+                  style: TextStyle(
+                      color: Color(0xff03646A),
+                      fontSize: 24,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w900),
+                ),
+                Text(
+                  ' Per\n Person',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 270,
+            left: 10,
+            child: Text(
+              'INCLUSIONS',
+              style: TextStyle(
+                  color: Color(0xff03646A),
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20),
+            ),
           ),
           Positioned(
             top: 200,
@@ -207,6 +158,27 @@ class SixBannerDownload extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          Positioned(
+            top: 500,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '21491279479',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'helloworld@gmail.com',
+                    style: TextStyle(
+                        color: Color(0xffFFD53D), fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -51,7 +51,7 @@ class ThirdBannerDownload extends StatelessWidget {
                       )),
                     ),
                     SizedBox(
-                      height: 3,
+                      height: 5,
                     ),
                     Text(
                       'Traveling Date 1 Sep to 21 Sep',
@@ -60,7 +60,10 @@ class ThirdBannerDownload extends StatelessWidget {
                           fontStyle: FontStyle.italic,
                           fontFamily: 'Maragsâ',
                           color: Color(0xff9B7B15),
-                          fontSize: 20),
+                          fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     Text(
                       'Package Includes',
@@ -71,11 +74,14 @@ class ThirdBannerDownload extends StatelessWidget {
                           color: Color(0xff9B7B15),
                           fontSize: 15),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Row(
                       children: [
                         Icon(
                           Icons.person_pin,
-                          size: 35,
+                          size: 25,
                           color: Color(0xff9B7B15),
                         ),
                         SizedBox(
@@ -88,7 +94,7 @@ class ThirdBannerDownload extends StatelessWidget {
                               // fontStyle: FontStyle.italic,
                               // fontFamily: 'Maragsâ',
                               color: Color(0xff9B7B15),
-                              fontSize: 17),
+                              fontSize: 14),
                         ),
                       ],
                     ),
@@ -96,7 +102,7 @@ class ThirdBannerDownload extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.wallet_travel,
-                          size: 35,
+                          size: 25,
                           color: Color(0xff9B7B15),
                         ),
                         SizedBox(
@@ -109,7 +115,7 @@ class ThirdBannerDownload extends StatelessWidget {
                               // fontStyle: FontStyle.italic,
                               // fontFamily: 'Maragsâ',
                               color: Color(0xff9B7B15),
-                              fontSize: 17),
+                              fontSize: 14),
                         ),
                       ],
                     ),
@@ -117,7 +123,7 @@ class ThirdBannerDownload extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.houseboat_outlined,
-                          size: 35,
+                          size: 25,
                           color: Color(0xff9B7B15),
                         ),
                         SizedBox(
@@ -130,17 +136,17 @@ class ThirdBannerDownload extends StatelessWidget {
                               // fontStyle: FontStyle.italic,
                               // fontFamily: 'Maragsâ',
                               color: Color(0xff9B7B15),
-                              fontSize: 17),
+                              fontSize: 14),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 2,
+                      height: 5,
                     ),
                     Text(
                       'CONTACT US : MUHAMEED KASHIF DONI ADDREES:IMPERIAL\nTRAVEL&TOURS OFFICE:29-C,SHOP # 4.PHASE-V D.H.A,\nKARACHI PHONE NO: 0321-828400 - 03356-589744',
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                         color: Color(0xff9B7B15),
                       ),
@@ -149,7 +155,7 @@ class ThirdBannerDownload extends StatelessWidget {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 70),
+                      padding: const EdgeInsets.only(left: 60),
                       child: Text(
                         'BOOK NOW! Imperialtravies@gmail.com',
                         style: TextStyle(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:banner_generate/banner/banner_model.dart';
 import 'package:banner_generate/banner/db_helper.dart';
@@ -10,30 +11,55 @@ import 'package:flutter/material.dart';
 
 // import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:screenshot/screenshot.dart';
 
 class BannerDownloard extends StatefulWidget {
-  const BannerDownloard({super.key});
+  final days;
+  final date;
+  final month;
+  final place_name;
+  final price;
+  final inclusions;
+  final number;
+  final email;
+  final image;
+  final simage;
+  final timage;
+
+  const BannerDownloard(
+      {super.key,
+      required this.days,
+      required this.date,
+      required this.month,
+      required this.place_name,
+      required this.price,
+      required this.inclusions,
+      required this.number,
+      required this.email,
+      required this.image,
+      this.simage,
+      this.timage});
 
   @override
   State<BannerDownloard> createState() => _BannerDownloardState();
 }
 
 class _BannerDownloardState extends State<BannerDownloard> {
-  DBHelper? dbHelper;
-  Future<List<BannerModel>>? banner;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    dbHelper = DBHelper();
-    loadData();
-  }
+  // DBHelper? dbHelper;
+  // Future<List<BannerModel>>? banner;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   dbHelper = DBHelper();
+  //   loadData();
+  // }
 
-  loadData() async {
-    banner = dbHelper!.read();
-  }
+  // loadData() async {
+  //   banner = dbHelper!.read();
+  // }
 
   // final controller = ScreenshotController();
   // GlobalKey ssKey = GlobalKey();
@@ -112,9 +138,9 @@ class _BannerDownloardState extends State<BannerDownloard> {
   void _captureAndSave() async {
     screenshotController.capture().then((dynamic image) async {
       // Save the image to the gallery
-      final result =
-     await WebImageDownloader.downloadImageFromUInt8List(uInt8List: Uint8List.fromList(image));
-          // await ImageGallerySaver.saveImage(Uint8List.fromList(image));
+      final result = await WebImageDownloader.downloadImageFromUInt8List(
+          uInt8List: Uint8List.fromList(image));
+      await ImageGallerySaver.saveImage(Uint8List.fromList(image));
       // if (result['isSuccess']) {
       //   snackbar('Screenshot saved to gallery', context);
       //   print("Screenshot saved to gallery");
@@ -131,7 +157,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
           'assets/images/6bannerbac.jpg',
           // 'assets/images/1bannerbac.png',
           height: 500,
-          
+
           // width: double.infinity,s
           // fit: BoxFit.cover,
         ),
@@ -143,7 +169,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
               child: Row(
                 children: [
                   Text(
-                    '8',
+                    widget.days,
                     style: TextStyle(
                         color: Color(0xffFFD53D),
                         fontSize: 50,
@@ -170,7 +196,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
             Padding(
               padding: const EdgeInsets.only(left: 30),
               child: Text(
-                '5th June THAILAND',
+                '${widget.date} ${widget.month} ${widget.place_name}',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -197,7 +223,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
                 ),
               ),
               Text(
-                '44,000',
+                widget.price,
                 style: TextStyle(
                     color: Color(0xff03646A),
                     fontSize: 24,
@@ -240,9 +266,8 @@ class _BannerDownloardState extends State<BannerDownloard> {
                   width: 130.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/2bannerbac.jpg',
-                        ),
+                        fit: BoxFit.cover,
+                        image: FileImage(File(widget.image)), // U
                       ),
                       border: Border.all(color: Colors.white, width: 3)),
                 ),
@@ -252,12 +277,10 @@ class _BannerDownloardState extends State<BannerDownloard> {
                 angle: -0.3,
                 child: Container(
                   height: 100.0,
-                  width: 130.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/2bannerbac.jpg',
-                        ),
+                        fit: BoxFit.cover,
+                        image: FileImage(File(widget.simage)), // U
                       ),
                       border: Border.all(color: Colors.white, width: 3)),
                 ),
@@ -270,9 +293,8 @@ class _BannerDownloardState extends State<BannerDownloard> {
                   width: 130.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/2bannerbac.jpg',
-                        ),
+                        fit: BoxFit.cover,
+                        image: FileImage(File(widget.timage)), // U
                       ),
                       border: Border.all(color: Colors.white, width: 3)),
                 ),
@@ -289,12 +311,12 @@ class _BannerDownloardState extends State<BannerDownloard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '21491279479',
+                  widget.number,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'helloworld@gmail.com',
+                  widget.email,
                   style: TextStyle(
                       color: Color(0xffFFD53D), fontWeight: FontWeight.bold),
                 ),

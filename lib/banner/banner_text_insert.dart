@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:banner_generate/banner/banner_model.dart';
 import 'package:banner_generate/banner/banner/banner_downloard.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:flutter/services.dart';
 
 import 'db_helper.dart';
@@ -15,25 +18,63 @@ class BannerTextInsert extends StatefulWidget {
 }
 
 class _BannerTextInsertState extends State<BannerTextInsert> {
-  TextEditingController textEditingController = TextEditingController();
-  TextEditingController priceEditingController = TextEditingController();
-  TextEditingController packageEditingController = TextEditingController();
-  TextEditingController dateEditingController = TextEditingController();
-  TextEditingController monthEditingController = TextEditingController();
-  TextEditingController numEditingController = TextEditingController();
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    textEditingController.dispose();
+  TextEditingController days = TextEditingController();
+  TextEditingController date = TextEditingController();
+  TextEditingController month = TextEditingController();
+  TextEditingController place_name = TextEditingController();
+  TextEditingController price = TextEditingController();
+  TextEditingController inclusions = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController email = TextEditingController();
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   textEditingController.dispose();
+  // }
+
+  // DBHelper? dbHelper;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   dbHelper = DBHelper();
+  // }
+  final ImagePicker _picker = ImagePicker();
+  XFile? _pickedImage;
+
+  Future<void> _pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _pickedImage = pickedImage;
+      }
+    });
   }
 
-  DBHelper? dbHelper;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    dbHelper = DBHelper();
+  XFile? _spickedImage;
+
+  Future<void> _spickImage() async {
+    final spickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (spickedImage != null) {
+        _spickedImage = spickedImage;
+      }
+    });
+  }
+
+  XFile? _tpickedImage;
+
+  Future<void> _tpickImage() async {
+    final tpickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (tpickedImage != null) {
+        _tpickedImage = tpickedImage;
+      }
+    });
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -61,13 +102,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Title';
+                        return 'Enter days';
                       } else {
                         return null;
                       }
                     },
-                    controller: textEditingController,
-                    hintText: 'Title',
+                    controller: days,
+                    hintText: 'Days',
                   ),
                   SizedBox(
                     height: 10,
@@ -75,13 +116,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Price';
+                        return 'Enter date';
                       } else {
                         return null;
                       }
                     },
-                    controller: priceEditingController,
-                    hintText: 'Price',
+                    controller: date,
+                    hintText: 'date',
                   ),
                   SizedBox(
                     height: 10,
@@ -89,13 +130,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Package Include';
+                        return 'Enter month';
                       } else {
                         return null;
                       }
                     },
-                    controller: packageEditingController,
-                    hintText: 'Package Include',
+                    controller: month,
+                    hintText: 'Package month',
                   ),
                   SizedBox(
                     height: 10,
@@ -103,13 +144,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Date';
+                        return 'Enter place_name';
                       } else {
                         return null;
                       }
                     },
-                    controller: dateEditingController,
-                    hintText: 'Date',
+                    controller: place_name,
+                    hintText: 'place_name',
                   ),
                   SizedBox(
                     height: 10,
@@ -117,13 +158,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Month';
+                        return 'Enter price';
                       } else {
                         return null;
                       }
                     },
-                    controller: monthEditingController,
-                    hintText: 'Month',
+                    controller: price,
+                    hintText: 'price',
                   ),
                   SizedBox(
                     height: 10,
@@ -131,35 +172,175 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter Number';
+                        return 'Enter inclusions';
                       } else {
                         return null;
                       }
                     },
-                    controller: numEditingController,
-                    hintText: 'Number',
+                    controller: inclusions,
+                    hintText: 'inclusions',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter number';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: number,
+                    hintText: 'number',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter email';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: email,
+                    hintText: 'email',
                   ),
                   SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: _pickImage,
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.blue, width: 2.0),
+                          ),
+                          child: _pickedImage == null
+                              ? Center(
+                                  child: Icon(
+                                    Icons.photo,
+                                    size: 80,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(_pickedImage!.path),
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: _spickImage,
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.blue, width: 2.0),
+                          ),
+                          child: _spickedImage == null
+                              ? Center(
+                                  child: Icon(
+                                    Icons.photo,
+                                    size: 80,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(_spickedImage!.path),
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  InkWell(
+                    onTap: _tpickImage,
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.blue, width: 2.0),
+                      ),
+                      child: _tpickedImage == null
+                          ? Center(
+                              child: Icon(
+                                Icons.photo,
+                                size: 80,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(_tpickedImage!.path),
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                    ),
+                  ),
+
+                  SizedBox(height: 20),
+                  // ElevatedButton(
+                  //   onPressed: _pickImage,
+                  //   child: Text('Pick Image from Gallery'),
+                  // ),
                   button(
                     'continue...',
                     () async {
                       if (_formKey.currentState!.validate()) {
-                        dbHelper
-                            ?.insert(BannerModel(
-                                name: textEditingController.text,
-                                dates: dateEditingController.text,
-                                month: monthEditingController.text,
-                                no: numEditingController.text,
-                                package: packageEditingController.text,
-                                price: priceEditingController.text))
-                            .then((value) {
-                          AppNavigator().push(context, const BannerDownloard());
-                          print('true');
-                        }).onError((error, stackTrace) {
-                          print('false');
-                        });
+                        AppNavigator().push(
+                            context,
+                            BannerDownloard(
+                              days: days.text,
+                              date: date.text,
+                              month: month.text,
+                              place_name: place_name.text,
+                              price: price.text,
+                              inclusions: inclusions.text,
+                              number: number.text,
+                              email: email.text,
+                              image: _pickedImage!.path,
+                              simage: _spickedImage!.path,
+                              timage: _tpickedImage!.path,
+                            ));
+                        // dbHelper
+                        //     ?.insert(BannerModel(
+                        //         name: textEditingController.text,
+                        //         dates: dateEditingController.text,
+                        //         month: monthEditingController.text,
+                        //         no: numEditingController.text,
+                        //         package: packageEditingController.text,
+                        //         price: priceEditingController.text)
+                        //         )
+
+                        // AppNavigator().push(
+                        //     context,
+                        //     BannerDownloard(
+                        //       date: textEditingController.text,
+                        //     ));
                       }
                     },
                   ),

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:flutter/services.dart';
 
-import 'db_helper.dart';
+import '../db_helper.dart';
 
 class BannerTextInsert extends StatefulWidget {
   BannerTextInsert({super.key});
@@ -108,7 +108,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: days,
-                    hintText: 'Days',
+                    hintText: 'days',
                   ),
                   SizedBox(
                     height: 10,
@@ -144,13 +144,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter place_name';
+                        return 'Enter place name';
                       } else {
                         return null;
                       }
                     },
                     controller: place_name,
-                    hintText: 'place_name',
+                    hintText: 'place name',
                   ),
                   SizedBox(
                     height: 10,
@@ -325,6 +325,11 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                               image: _pickedImage!.path,
                               simage: _spickedImage!.path,
                               timage: _tpickedImage!.path,
+                              p1: '02 Nights Accommodation in Pattaya',
+                              p2: '01 Night Accomodation in Phuket',
+                              p3: 'Bangkok hop on hop off bus tour',
+                              p4: 'pattaya big Buddha viewpoint tour',
+                              p5: 'Thailand visa file processing include',
                             ));
                         // dbHelper
                         //     ?.insert(BannerModel(

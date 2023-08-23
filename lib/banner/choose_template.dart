@@ -1,15 +1,11 @@
-import 'package:banner_generate/banner/banner_text_insert.dart';
+import 'package:banner_generate/banner/banner_text_field/banner_text_insert.dart';
 import 'package:banner_generate/banner/view_banner.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'banner/2banner_dounloard.dart';
-import 'banner/3banner_download.dart';
-import 'banner/4banner_download.dart';
-import 'banner/6banner_download.dart';
-import 'banner/7banner_download.dart';
-import 'banner/8banner_download.dart';
+import 'banner_text_field/2banner_text_insert.dart';
+import 'banner_text_field/3banner_text_insert.dart';
 
 class ChooseTemplate extends StatelessWidget {
   const ChooseTemplate({super.key});
@@ -17,23 +13,14 @@ class ChooseTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List image = [
-      'template_bak.png',
-      '4template_bak.jpg',
-      'flutter_03.png',
       'flutter_02.png',
-      'flutter_01.png'
+      'flutter_01.png',
+      '4template_bak.jpg',
     ];
     List view = [
-      ThreeBannerDownload(),
-      ThirdBannerDownload(),
-      SixBannerDownload(),
-      SevenBannerDownload(),
-      EightBannerDownload()
-      // 'template_bak.png',
-      // '4template_bak.jpg',
-      // 'flutter_03.png',
-      // 'flutter_02.png',
-      // 'flutter_01.png'
+      BannerTextInsert(),
+      SecondBannerTextInsert(),
+      ThirdBannerTextInsert()
     ];
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -183,8 +170,7 @@ class ChooseTemplate extends StatelessWidget {
                               child: Center(
                                 child: IconButton(
                                     onPressed: () {
-                                      AppNavigator()
-                                          .push(context, BannerTextInsert());
+                                      AppNavigator().push(context, view[index]);
                                     },
                                     icon: Icon(
                                       Icons.edit,

@@ -27,6 +27,11 @@ class BannerDownloard extends StatefulWidget {
   final image;
   final simage;
   final timage;
+  final p1;
+  final p2;
+  final p3;
+  final p4;
+  final p5;
 
   const BannerDownloard(
       {super.key,
@@ -39,8 +44,13 @@ class BannerDownloard extends StatefulWidget {
       required this.number,
       required this.email,
       required this.image,
-      this.simage,
-      this.timage});
+      required this.simage,
+      required this.timage,
+      required this.p1,
+      required this.p2,
+      required this.p3,
+      required this.p4,
+      required this.p5});
 
   @override
   State<BannerDownloard> createState() => _BannerDownloardState();
@@ -83,7 +93,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: button('Dowmloard...', () async {
-              _captureAndSave();
+              captureAndSave(screenshotController, context);
               // final pdfFile =
               //     await Pdf.generateCreated();
 
@@ -133,23 +143,6 @@ class _BannerDownloardState extends State<BannerDownloard> {
             //               });
             //     })
             ));
-  }
-
-  void _captureAndSave() async {
-    screenshotController.capture().then((dynamic image) async {
-      // Save the image to the gallery
-      final result = await WebImageDownloader.downloadImageFromUInt8List(
-          uInt8List: Uint8List.fromList(image));
-      await ImageGallerySaver.saveImage(Uint8List.fromList(image));
-      // if (result['isSuccess']) {
-      //   snackbar('Screenshot saved to gallery', context);
-      //   print("Screenshot saved to gallery");
-      // } else {
-      //   print("Failed to save screenshot: ${result['errorMessage']}");
-      // }
-    }).catchError((onError) {
-      print("Error capturing screenshot: $onError");
-    });
   }
 
   Widget buildStack(size) => Stack(children: [
@@ -244,13 +237,21 @@ class _BannerDownloardState extends State<BannerDownloard> {
         ),
         Positioned(
           top: 250,
-          left: 30,
+          left: 20,
           child: Text(
             'INCLUSIONS',
             style: TextStyle(
                 color: Color(0xff03646A),
                 fontWeight: FontWeight.w900,
                 fontSize: 20),
+          ),
+        ),
+        Positioned(
+          top: 280,
+          left: 20,
+          child: Text(
+            '${widget.p1}\n${widget.p2}\n${widget.p3}\n${widget.p4}\n${widget.p5}',
+            style: TextStyle(color: Colors.black, fontSize: 9),
           ),
         ),
         Positioned(
@@ -277,6 +278,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
                 angle: -0.3,
                 child: Container(
                   height: 100.0,
+                  width: 130.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,

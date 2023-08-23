@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppNavigator {
@@ -117,4 +120,22 @@ errorSnackbar(text, context) {
     ),
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+captureAndSave(screenshotController, context) async {
+  screenshotController.capture().then((dynamic image) async {
+    // Save the image to the gallery
+    final result =
+        // await WebImageDownloader.downloadImageFromUInt8List(
+        //     uInt8List: Uint8List.fromList(image));
+        await ImageGallerySaver.saveImage(Uint8List.fromList(image));
+    if (result['isSuccess']) {
+      snackbar('Screenshot saved to gallery', context);
+      print("Screenshot saved to gallery");
+    } else {
+      print("Failed to save screenshot: ${result['errorMessage']}");
+    }
+  }).catchError((onError) {
+    print("Error capturing screenshot: $onError");
+  });
 }

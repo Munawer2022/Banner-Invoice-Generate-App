@@ -4,30 +4,36 @@ import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '2banner_dounloard.dart';
-import '3banner_download.dart';
-import '4banner_download.dart';
-import '6banner_download.dart';
-import '7banner_download.dart';
+import 'banner/2banner_dounloard.dart';
+import 'banner/3banner_download.dart';
+import 'banner/4banner_download.dart';
+import 'banner/6banner_download.dart';
+import 'banner/7banner_download.dart';
+import 'banner/8banner_download.dart';
 
-class BannerTemplate extends StatelessWidget {
-  const BannerTemplate({super.key});
+class ChooseTemplate extends StatelessWidget {
+  const ChooseTemplate({super.key});
 
   @override
   Widget build(BuildContext context) {
     List image = [
-      'template_bak.jpg',
+      'template_bak.png',
       '4template_bak.jpg',
       'flutter_03.png',
       'flutter_02.png',
       'flutter_01.png'
     ];
     List view = [
-      SecondBannerDownload(),
       ThreeBannerDownload(),
       ThirdBannerDownload(),
       SixBannerDownload(),
       SevenBannerDownload(),
+      EightBannerDownload()
+      // 'template_bak.png',
+      // '4template_bak.jpg',
+      // 'flutter_03.png',
+      // 'flutter_02.png',
+      // 'flutter_01.png'
     ];
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -156,9 +162,10 @@ class BannerTemplate extends StatelessWidget {
                               child: Center(
                                 child: IconButton(
                                     onPressed: () {
-                                      AppNavigator().push(context, view[index]);
-                                      // ViewBanner(image:
-                                      //  image[index]
+                                      AppNavigator().push(
+                                          context,
+                                          //view[index]
+                                          ViewBanner(image: image[index]));
                                     },
                                     icon: Icon(
                                       Icons.remove_red_eye,

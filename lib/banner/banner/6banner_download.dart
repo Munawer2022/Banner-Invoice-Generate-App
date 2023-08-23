@@ -7,11 +7,12 @@ class SixBannerDownload extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.red,
       body: Stack(
         children: [
           Image.asset(
             'assets/images/6bannerbac.jpg',
-            height: 550,
+            height: 500,
             // width: double.infinity,
             fit: BoxFit.cover,
           ),

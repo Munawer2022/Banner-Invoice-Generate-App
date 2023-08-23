@@ -1,4 +1,4 @@
-import 'package:banner_generate/banner/banner_template.dart';
+import 'package:banner_generate/banner/choose_template.dart';
 import 'package:banner_generate/invoice/invoice_text_field.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -138,7 +138,7 @@ class _DahboardState extends State<Dahboard> {
                             newContainer(
                               context,
                               'assets/images/banner_back.png',
-                              BannerTemplate(),
+                              ChooseTemplate(),
                               'Banner',
                             ),
                             newContainer(

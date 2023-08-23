@@ -1,5 +1,5 @@
 import 'package:banner_generate/banner/banner_model.dart';
-import 'package:banner_generate/banner/banner_downloard.dart';
+import 'package:banner_generate/banner/banner/banner_downloard.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

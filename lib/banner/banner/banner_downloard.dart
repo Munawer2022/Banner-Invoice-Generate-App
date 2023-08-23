@@ -8,7 +8,8 @@ import 'package:banner_generate/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_downloader_web/image_downloader_web.dart';
 
 import 'package:screenshot/screenshot.dart';
 
@@ -112,13 +113,14 @@ class _BannerDownloardState extends State<BannerDownloard> {
     screenshotController.capture().then((dynamic image) async {
       // Save the image to the gallery
       final result =
-          await ImageGallerySaver.saveImage(Uint8List.fromList(image));
-      if (result['isSuccess']) {
-        snackbar('Screenshot saved to gallery', context);
-        print("Screenshot saved to gallery");
-      } else {
-        print("Failed to save screenshot: ${result['errorMessage']}");
-      }
+     await WebImageDownloader.downloadImageFromUInt8List(uInt8List: Uint8List.fromList(image));
+          // await ImageGallerySaver.saveImage(Uint8List.fromList(image));
+      // if (result['isSuccess']) {
+      //   snackbar('Screenshot saved to gallery', context);
+      //   print("Screenshot saved to gallery");
+      // } else {
+      //   print("Failed to save screenshot: ${result['errorMessage']}");
+      // }
     }).catchError((onError) {
       print("Error capturing screenshot: $onError");
     });
@@ -129,7 +131,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
           'assets/images/6bannerbac.jpg',
           // 'assets/images/1bannerbac.png',
           height: 500,
-          width: 500,
+          
           // width: double.infinity,s
           // fit: BoxFit.cover,
         ),
@@ -227,7 +229,7 @@ class _BannerDownloardState extends State<BannerDownloard> {
         ),
         Positioned(
           top: 200,
-          right: 0,
+          left: 200,
           child: Column(
             children: [
               Transform.rotate(

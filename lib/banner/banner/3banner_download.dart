@@ -67,7 +67,7 @@ class ThreeBannerDownload extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(

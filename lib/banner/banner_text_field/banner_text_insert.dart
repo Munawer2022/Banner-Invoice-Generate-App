@@ -100,6 +100,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
               child: Column(
                 children: [
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter days';
@@ -108,7 +109,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: days,
-                    hintText: 'days',
+                    hintText: 'days: ex 8',
                   ),
                   SizedBox(
                     height: 10,
@@ -122,7 +123,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: date,
-                    hintText: 'date',
+                    hintText: 'date: ex 5th',
                   ),
                   SizedBox(
                     height: 10,
@@ -136,7 +137,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: month,
-                    hintText: 'Package month',
+                    hintText: 'month: ex June',
                   ),
                   SizedBox(
                     height: 10,
@@ -150,12 +151,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: place_name,
-                    hintText: 'place name',
+                    hintText: 'place name: ex THAILAND',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter price';
@@ -164,7 +166,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: price,
-                    hintText: 'price',
+                    hintText: 'price: ex 44,000',
                   ),
                   SizedBox(
                     height: 10,
@@ -178,12 +180,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: inclusions,
-                    hintText: 'inclusions',
+                    hintText: 'inclusions: ex package detail',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter number';
@@ -192,12 +195,13 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: number,
-                    hintText: 'number',
+                    hintText: 'number: ex +92',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter email';
@@ -206,7 +210,7 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                       }
                     },
                     controller: email,
-                    hintText: 'email',
+                    hintText: 'email: ex email@gmail.com',
                   ),
                   SizedBox(
                     height: 20,
@@ -325,11 +329,6 @@ class _BannerTextInsertState extends State<BannerTextInsert> {
                               image: _pickedImage!.path,
                               simage: _spickedImage!.path,
                               timage: _tpickedImage!.path,
-                              p1: '02 Nights Accommodation in Pattaya',
-                              p2: '01 Night Accomodation in Phuket',
-                              p3: 'Bangkok hop on hop off bus tour',
-                              p4: 'pattaya big Buddha viewpoint tour',
-                              p5: 'Thailand visa file processing include',
                             ));
                         // dbHelper
                         //     ?.insert(BannerModel(

@@ -105,14 +105,17 @@ class _ThirdBannerDownloardState extends State<ThirdBannerDownload> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Maragsâ',
-                        color: Color(0xff9B7B15),
-                        fontSize: 16),
+                  SizedBox(
+                    width: 220,
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'Maragsâ',
+                          color: Color(0xff9B7B15),
+                          fontSize: 16),
+                    ),
                   ),
                   SizedBox(
                     height: 5,

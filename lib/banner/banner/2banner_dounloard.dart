@@ -313,13 +313,17 @@ class _SecondBannerDownloardState extends State<SecondBannerDownload> {
                                   fontFamily: 'Roboto',
                                   fontSize: 11),
                             ),
-                            Text(
-                              widget.pack_includ,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w100,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 9),
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                widget.pack_includ,
+                                maxLines: 4,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w100,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 9),
+                              ),
                             ),
                           ],
                         ),

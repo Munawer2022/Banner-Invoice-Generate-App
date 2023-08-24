@@ -27,30 +27,21 @@ class BannerDownloard extends StatefulWidget {
   final image;
   final simage;
   final timage;
-  final p1;
-  final p2;
-  final p3;
-  final p4;
-  final p5;
 
-  const BannerDownloard(
-      {super.key,
-      required this.days,
-      required this.date,
-      required this.month,
-      required this.place_name,
-      required this.price,
-      required this.inclusions,
-      required this.number,
-      required this.email,
-      required this.image,
-      required this.simage,
-      required this.timage,
-      required this.p1,
-      required this.p2,
-      required this.p3,
-      required this.p4,
-      required this.p5});
+  const BannerDownloard({
+    super.key,
+    required this.days,
+    required this.date,
+    required this.month,
+    required this.place_name,
+    required this.price,
+    required this.inclusions,
+    required this.number,
+    required this.email,
+    required this.image,
+    required this.simage,
+    required this.timage,
+  });
 
   @override
   State<BannerDownloard> createState() => _BannerDownloardState();
@@ -249,9 +240,13 @@ class _BannerDownloardState extends State<BannerDownloard> {
         Positioned(
           top: 280,
           left: 20,
-          child: Text(
-            '${widget.p1}\n${widget.p2}\n${widget.p3}\n${widget.p4}\n${widget.p5}',
-            style: TextStyle(color: Colors.black, fontSize: 9),
+          child: SizedBox(
+            width: 150,
+            child: Text(
+              widget.inclusions,
+              maxLines: 10,
+              style: TextStyle(color: Colors.black, fontSize: 9),
+            ),
           ),
         ),
         Positioned(

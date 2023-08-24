@@ -4,29 +4,18 @@ import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'banner_text_field/2banner_text_insert.dart';
-import 'banner_text_field/3banner_text_insert.dart';
-import 'banner_text_field/4banner_text_insert.dart';
-import 'banner_text_field/5banner_text_insert.dart';
+import 'invoice_text_field/invoice_text_field.dart';
 
-class ChooseTemplate extends StatelessWidget {
-  const ChooseTemplate({super.key});
+class InvoiceChooseTemplate extends StatelessWidget {
+  const InvoiceChooseTemplate({super.key});
 
   @override
   Widget build(BuildContext context) {
     List image = [
-      'flutter_02.jpg',
-      'flutter_01.png',
-      '4template_bak.jpg',
-      'flutter_03.jpg',
-      'template_bak.png',
+      'invoice_tem.jpg',
     ];
     List view = [
-      BannerTextInsert(),
-      SecondBannerTextInsert(),
-      ThirdBannerTextInsert(),
-      FourBannerTextInsert(),
-      FiveBannerTextInsert()
+      InvoiceTextInsert(),
     ];
     var size = MediaQuery.of(context).size;
     return Scaffold(

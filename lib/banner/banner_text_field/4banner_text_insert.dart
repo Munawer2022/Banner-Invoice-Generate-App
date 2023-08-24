@@ -1,33 +1,25 @@
-import 'dart:io';
-
-import 'package:banner_generate/banner/banner/2banner_dounloard.dart';
 import 'package:banner_generate/banner/banner/3banner_download.dart';
-import 'package:banner_generate/banner/banner_model.dart';
-import 'package:banner_generate/banner/banner/banner_downloard.dart';
+import 'package:banner_generate/banner/banner/4banner_download.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-// import 'package:flutter/services.dart';
 
-import '../db_helper.dart';
-
-class ThirdBannerTextInsert extends StatefulWidget {
-  ThirdBannerTextInsert({super.key});
+class FourBannerTextInsert extends StatefulWidget {
+  FourBannerTextInsert({super.key});
 
   @override
-  State<ThirdBannerTextInsert> createState() => _ThirdBannerTextInsertState();
+  State<FourBannerTextInsert> createState() => _FourBannerTextInsertState();
 }
 
-class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
-  TextEditingController year = TextEditingController();
-  TextEditingController price = TextEditingController();
-  TextEditingController title = TextEditingController();
-  TextEditingController p1 = TextEditingController();
-  TextEditingController p2 = TextEditingController();
-  TextEditingController p3 = TextEditingController();
-  TextEditingController contack_us = TextEditingController();
-  TextEditingController address = TextEditingController();
+class _FourBannerTextInsertState extends State<FourBannerTextInsert> {
+  TextEditingController total_first_pac_night = TextEditingController();
+  TextEditingController total_second_pac_night = TextEditingController();
+  TextEditingController total_first_pac_night_madinah = TextEditingController();
+  TextEditingController total_first_pac_night_makkah = TextEditingController();
+  TextEditingController total_second_pac_night_madinah =
+      TextEditingController();
+  TextEditingController total_second_pac_night_makkah = TextEditingController();
+  TextEditingController pack_includ = TextEditingController();
   TextEditingController number = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -56,13 +48,13 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter year';
+                        return 'Enter total first package nights';
                       } else {
                         return null;
                       }
                     },
-                    controller: year,
-                    hintText: 'year: ex 2023',
+                    controller: total_first_pac_night,
+                    hintText: 'total first package nights: ex 7',
                   ),
                   SizedBox(
                     height: 10,
@@ -71,13 +63,73 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter price';
+                        return 'Enter total second package nights';
                       } else {
                         return null;
                       }
                     },
-                    controller: price,
-                    hintText: 'price: ex 200,000',
+                    controller: total_second_pac_night,
+                    hintText: 'total second package nights: ex 7',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter total first package nights madinah';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: total_first_pac_night_madinah,
+                    hintText: 'total first package nights madinah: ex 4',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter total first package night makkah';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: total_first_pac_night_makkah,
+                    hintText: 'total first package night makkah: ex 3',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter total second package night madinah';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: total_second_pac_night_madinah,
+                    hintText: 'total second package night madinah: ex 4',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldForm(
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter total second package night makkah';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: total_second_pac_night_makkah,
+                    hintText: 'total second package night makkah: ex 3',
                   ),
                   SizedBox(
                     height: 10,
@@ -85,84 +137,14 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter title';
+                        return 'Enter pack includ';
                       } else {
                         return null;
                       }
                     },
-                    controller: title,
-                    hintText: 'title',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter package name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p1,
-                    hintText: 'place package name: ex Umrah Visa',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter air line name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p2,
-                    hintText: 'air line name: ex Air Ticket',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter hotal name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p3,
-                    hintText: 'hotal name',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter contack us';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: contack_us,
-                    hintText: 'contack us',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    keyboardType: TextInputType.streetAddress,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter address';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: address,
-                    hintText: 'address',
+                    controller: pack_includ,
+                    hintText:
+                        'package : UMRAH VISA - FLIGHT TICKET - ACCOMODATION',
                   ),
                   SizedBox(
                     height: 10,
@@ -180,9 +162,6 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                     hintText: 'number',
                   ),
                   SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
                     height: 20,
                   ),
                   button(
@@ -191,15 +170,20 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                       if (_formKey.currentState!.validate()) {
                         AppNavigator().push(
                             context,
-                            ThirdBannerDownload(
-                                year: year.text,
-                                price: price.text,
-                                title: title.text,
-                                p1: p1.text,
-                                p2: p2.text,
-                                p3: p3.text,
-                                contack_us: contack_us.text,
-                                address: address.text,
+                            FourBannerDownload(
+                                total_first_pac_night:
+                                    total_first_pac_night.text,
+                                total_second_pac_night:
+                                    total_second_pac_night.text,
+                                total_first_pac_night_madinah:
+                                    total_first_pac_night_madinah.text,
+                                total_first_pac_night_makkah:
+                                    total_first_pac_night_makkah.text,
+                                total_second_pac_night_madinah:
+                                    total_second_pac_night_madinah.text,
+                                total_second_pac_night_makkah:
+                                    total_second_pac_night_makkah.text,
+                                pack_includ: pack_includ.text,
                                 number: number.text)
                             // dbHelper
                             //     ?.insert(BannerModel(

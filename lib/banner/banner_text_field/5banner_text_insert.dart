@@ -1,34 +1,38 @@
 import 'dart:io';
 
-import 'package:banner_generate/banner/banner/2banner_dounloard.dart';
 import 'package:banner_generate/banner/banner/3banner_download.dart';
-import 'package:banner_generate/banner/banner_model.dart';
-import 'package:banner_generate/banner/banner/banner_downloard.dart';
+import 'package:banner_generate/banner/banner/4banner_download.dart';
+import 'package:banner_generate/banner/banner/5banner_download.dart';
 import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:flutter/services.dart';
 
-import '../db_helper.dart';
-
-class ThirdBannerTextInsert extends StatefulWidget {
-  ThirdBannerTextInsert({super.key});
+class FiveBannerTextInsert extends StatefulWidget {
+  FiveBannerTextInsert({super.key});
 
   @override
-  State<ThirdBannerTextInsert> createState() => _ThirdBannerTextInsertState();
+  State<FiveBannerTextInsert> createState() => _FiveBannerTextInsertState();
 }
 
-class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
+class _FiveBannerTextInsertState extends State<FiveBannerTextInsert> {
   TextEditingController year = TextEditingController();
   TextEditingController price = TextEditingController();
-  TextEditingController title = TextEditingController();
-  TextEditingController p1 = TextEditingController();
-  TextEditingController p2 = TextEditingController();
-  TextEditingController p3 = TextEditingController();
-  TextEditingController contack_us = TextEditingController();
-  TextEditingController address = TextEditingController();
+  TextEditingController description = TextEditingController();
   TextEditingController number = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+
+  XFile? _pickedImage;
+
+  Future<void> _pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _pickedImage = pickedImage;
+      }
+    });
+  }
 
   final _formKey = GlobalKey<FormState>();
   bool load = false;
@@ -77,7 +81,7 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                       }
                     },
                     controller: price,
-                    hintText: 'price: ex 200,000',
+                    hintText: 'price: ex 22,000',
                   ),
                   SizedBox(
                     height: 10,
@@ -85,84 +89,13 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter title';
+                        return 'Enter description';
                       } else {
                         return null;
                       }
                     },
-                    controller: title,
-                    hintText: 'title',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter package name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p1,
-                    hintText: 'place package name: ex Umrah Visa',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter air line name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p2,
-                    hintText: 'air line name: ex Air Ticket',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter hotal name';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: p3,
-                    hintText: 'hotal name',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter contack us';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: contack_us,
-                    hintText: 'contack us',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFieldForm(
-                    keyboardType: TextInputType.streetAddress,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter address';
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: address,
-                    hintText: 'address',
+                    controller: description,
+                    hintText: 'description: ex package details',
                   ),
                   SizedBox(
                     height: 10,
@@ -179,8 +112,40 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                     controller: number,
                     hintText: 'number',
                   ),
-                  SizedBox(
-                    height: 10,
+                  SizedBox(height: 20),
+                  InkWell(
+                    onTap: _pickImage,
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.blue, width: 2.0),
+                      ),
+                      child: _pickedImage == null
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Icon(
+                                    Icons.photo,
+                                    size: 80,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text('Logo')
+                              ],
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(_pickedImage!.path),
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                    ),
                   ),
                   SizedBox(
                     height: 20,
@@ -191,15 +156,11 @@ class _ThirdBannerTextInsertState extends State<ThirdBannerTextInsert> {
                       if (_formKey.currentState!.validate()) {
                         AppNavigator().push(
                             context,
-                            ThirdBannerDownload(
+                            FiveBannerDownload(
                                 year: year.text,
                                 price: price.text,
-                                title: title.text,
-                                p1: p1.text,
-                                p2: p2.text,
-                                p3: p3.text,
-                                contack_us: contack_us.text,
-                                address: address.text,
+                                description: description.text,
+                                logo: _pickedImage!.path,
                                 number: number.text)
                             // dbHelper
                             //     ?.insert(BannerModel(

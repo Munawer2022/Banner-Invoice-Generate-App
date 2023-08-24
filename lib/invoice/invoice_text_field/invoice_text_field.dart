@@ -5,7 +5,7 @@ import 'package:banner_generate/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'invoice_download.dart';
+import '../invoice/invoice_download.dart';
 
 class InvoiceTextInsert extends StatefulWidget {
   InvoiceTextInsert({super.key});
@@ -145,23 +145,24 @@ class _InvoiceTextInsertState extends State<InvoiceTextInsert> {
                   button(
                     'continue...',
                     () async {
-                      if (_formKey.currentState!.validate()) {
-                        invoiceDBHelper
-                            ?.insert(BannerModel(
-                                name: textEditingController.text,
-                                dates: dateEditingController.text,
-                                month: monthEditingController.text,
-                                no: numEditingController.text,
-                                package: packageEditingController.text,
-                                price: priceEditingController.text))
-                            .then((value) {
-                          AppNavigator()
-                              .push(context, const InvoiceDownloard());
-                          print('true');
-                        }).onError((error, stackTrace) {
-                          print('false');
-                        });
-                      }
+                      AppNavigator().push(context, const InvoiceDownloard());
+                      // if (_formKey.currentState!.validate()) {
+                      //   invoiceDBHelper
+                      //       ?.insert(BannerModel(
+                      //           name: textEditingController.text,
+                      //           dates: dateEditingController.text,
+                      //           month: monthEditingController.text,
+                      //           no: numEditingController.text,
+                      //           package: packageEditingController.text,
+                      //           price: priceEditingController.text))
+                      //       .then((value) {
+                      //     AppNavigator()
+                      //         .push(context, const InvoiceDownloard());
+                      //     print('true');
+                      //   }).onError((error, stackTrace) {
+                      //     print('false');
+                      //   });
+                      // }
                     },
                   ),
                 ],

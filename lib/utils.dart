@@ -45,8 +45,13 @@ class TextFieldForm extends StatelessWidget {
   final validator;
   final controller;
   final hintText;
+  final keyboardType;
   const TextFieldForm(
-      {super.key, this.controller, this.hintText, this.validator});
+      {super.key,
+      this.controller,
+      this.hintText,
+      this.validator,
+      this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +65,7 @@ class TextFieldForm extends StatelessWidget {
         elevation: 5,
         shadowColor: Color(0XFF000000),
         child: TextFormField(
+          keyboardType: keyboardType,
           textInputAction: TextInputAction.next,
           validator: validator,
           decoration: InputDecoration(
@@ -133,6 +139,7 @@ captureAndSave(screenshotController, context) async {
       snackbar('Screenshot saved to gallery', context);
       print("Screenshot saved to gallery");
     } else {
+      errorSnackbar(result['errorMessage'], context);
       print("Failed to save screenshot: ${result['errorMessage']}");
     }
   }).catchError((onError) {

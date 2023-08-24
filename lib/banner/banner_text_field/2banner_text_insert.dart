@@ -70,29 +70,31 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
               child: Column(
                 children: [
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter makkah_days';
+                        return 'Enter makkah nights';
                       } else {
                         return null;
                       }
                     },
                     controller: makkah_days,
-                    hintText: 'makkah_days',
+                    hintText: 'total makkah nights: ex 10',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter madinah_days';
+                        return 'Enter madinah nights';
                       } else {
                         return null;
                       }
                     },
                     controller: madinah_days,
-                    hintText: 'madinah_days',
+                    hintText: 'total madinah nights: ex 10',
                   ),
                   SizedBox(
                     height: 10,
@@ -100,13 +102,13 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter makkah_hotal_name';
+                        return 'Enter makkah hotal name';
                       } else {
                         return null;
                       }
                     },
                     controller: makkah_hotal_name,
-                    hintText: 'Package makkah_hotal_name',
+                    hintText: 'makkah hotal name: ex Osconn Hotal',
                   ),
                   SizedBox(
                     height: 10,
@@ -114,13 +116,13 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter place madinah_hotal_name';
+                        return 'Enter madinah hotal name';
                       } else {
                         return null;
                       }
                     },
                     controller: madinah_hotal_name,
-                    hintText: 'place madinah_hotal_name',
+                    hintText: 'madinah hotal name: ex Osconn Hotel',
                   ),
                   SizedBox(
                     height: 10,
@@ -128,13 +130,13 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter makkah_hotal_distance';
+                        return 'Enter makkah hotal distance';
                       } else {
                         return null;
                       }
                     },
                     controller: makkah_hotal_distance,
-                    hintText: 'makkah_hotal_distance',
+                    hintText: 'makkah hotal distance: ex (700 Meter HIJRA)',
                   ),
                   SizedBox(
                     height: 10,
@@ -142,69 +144,73 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter madinah_hotal_distance';
+                        return 'Enter madinah hotal distance';
                       } else {
                         return null;
                       }
                     },
                     controller: madinah_hotal_distance,
-                    hintText: 'madinah_hotal_distance',
+                    hintText: 'madinah hotal distance: ex (700 Meter HIJRA)',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter sharing_price';
+                        return 'Enter sharing price';
                       } else {
                         return null;
                       }
                     },
                     controller: sharing_price,
-                    hintText: 'sharing_price',
+                    hintText: 'sharing price: ex 235,000',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter quad_price';
+                        return 'Enter quad price';
                       } else {
                         return null;
                       }
                     },
                     controller: quad_price,
-                    hintText: 'quad_price',
+                    hintText: 'quad price: ex 235,000',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter triple_price';
+                        return 'Enter triple price';
                       } else {
                         return null;
                       }
                     },
                     controller: triple_price,
-                    hintText: 'triple_price',
+                    hintText: 'triple price: ex 235,000',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter double_price';
+                        return 'Enter double price';
                       } else {
                         return null;
                       }
                     },
                     controller: double_price,
-                    hintText: 'double_price',
+                    hintText: 'double price: ex 235,000',
                   ),
                   SizedBox(
                     height: 10,
@@ -212,18 +218,19 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                   TextFieldForm(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter pack_includ';
+                        return 'Enter pack includ';
                       } else {
                         return null;
                       }
                     },
                     controller: pack_includ,
-                    hintText: 'pack_includ',
+                    hintText: 'pack includ: ex package details',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter days';
@@ -232,12 +239,13 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                       }
                     },
                     controller: days,
-                    hintText: 'days',
+                    hintText: 'days: ex 20',
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFieldForm(
+                    keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Enter number';
@@ -246,7 +254,7 @@ class _SecondBannerTextInsertState extends State<SecondBannerTextInsert> {
                       }
                     },
                     controller: number,
-                    hintText: 'number',
+                    hintText: 'number: ex +92',
                   ),
 
                   SizedBox(

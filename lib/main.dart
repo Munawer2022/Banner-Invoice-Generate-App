@@ -1,3 +1,4 @@
+import 'package:banner_generate/pdf/pdf_text_field.dart';
 import 'package:flutter/material.dart';
 import 'banner/banner/4banner_download.dart';
 import 'banner/banner_text_field/3banner_text_insert.dart';
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: Dahboard());
+        home: PdfTextInsert());
   }
 }

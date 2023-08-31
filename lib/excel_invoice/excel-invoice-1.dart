@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 // import 'package:accordion/accordion.dart';
 import 'package:intl/intl.dart';
 
-import '../pdf/pdf.dart';
+import 'pdf.dart';
 
 class ExcelInvoice1 extends StatefulWidget {
   ExcelInvoice1({Key? key}) : super(key: key);

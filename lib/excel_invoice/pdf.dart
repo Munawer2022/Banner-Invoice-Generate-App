@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:banner_generate/excel_invoice/excel-invoice-1.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -7,12 +8,13 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/widgets.dart';
 
 class Pdf {
-  static Future generateCreated() async {
+  static Future generateCreated(noOfCities) async {
     final pdf = Document();
 
     pdf.addPage(MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
+              if (noOfCities == 1) pw.Text('data'),
               pw.Table(
                   border: pw.TableBorder.all(color: PdfColors.black),
                   children: [
@@ -1970,7 +1972,7 @@ class Pdf {
                     ])
                   ]),
             ])); // Page
-    return saveDocument(name: 'banner_generate.pdf', pdf: pdf);
+    return saveDocument(name: 'excel_invoice.pdf', pdf: pdf);
   }
 
   static Future saveDocument({

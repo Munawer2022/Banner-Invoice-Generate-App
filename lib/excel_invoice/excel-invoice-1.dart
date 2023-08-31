@@ -160,6 +160,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
 
                         setState(() {});
                         noOfCities++;
+                        // Pdf(noOfCities);
                       },
                       child: Icon(
                         Icons.add,
@@ -925,7 +926,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               color: Palette.primaryColor,
               disabledColor: Colors.grey,
               onPressed: () async {
-                final pdfFile = await Pdf.generateCreated();
+                final pdfFile = await Pdf.generateCreated(noOfCities);
 
                 await Pdf.openFile(pdfFile).then((value) {
                   print('opendone');

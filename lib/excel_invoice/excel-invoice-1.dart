@@ -17,6 +17,13 @@ class ExcelInvoice1 extends StatefulWidget {
   State<ExcelInvoice1> createState() => _ExcelInvoice1State();
 }
 
+TextEditingController dayController = new TextEditingController();
+TextEditingController nameController = new TextEditingController();
+TextEditingController airlineNameController = new TextEditingController();
+List<TextEditingController> airlineController = [];
+List<AirlineWidget> airlineWidget = [];
+int noOfAirlines = 0;
+String allFlights = "";
 //cityWidget Variables
 
 List<CityWidget> cityWidget = [];
@@ -81,8 +88,6 @@ TextEditingController perCostController = new TextEditingController();
 //visa details variables
 
 class _ExcelInvoice1State extends State<ExcelInvoice1> {
-  TextEditingController passwordController = new TextEditingController();
-
   final _headerStyle = const TextStyle(
       color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
   final _contentStyleHeader = const TextStyle(
@@ -113,7 +118,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             CustomTextFieldHint(
               label: "No of Days",
-              controller: passwordController,
+              controller: dayController,
               placeholder: "Eg: 21",
               isValid: true,
               errorText: "Password must upto 6 characters",
@@ -125,7 +130,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             CustomTextFieldHint(
               label: "C/O",
-              controller: passwordController,
+              controller: nameController,
               placeholder: "Eg: Person name",
               isValid: true,
               errorText: "Password must upto 6 characters",
@@ -134,6 +139,71 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 return false;
               },
             ),
+            CustomTextFieldHint(
+              label: "Airline name",
+              controller: airlineNameController,
+              placeholder: "Eg: Saudi Airline",
+              isValid: true,
+              errorText: "Password must upto 6 characters",
+              hint: "",
+              onChanged: () {
+                return false;
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: bodyWidth,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.yellow[100],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 50,
+                    child: InkWell(
+                      onTap: () {
+                        airlineWidget.add(new AirlineWidget(
+                          index: noOfAirlines,
+                        ));
+
+                        airlineController.add(new TextEditingController());
+
+                        // meterController.add(new TextEditingController());
+
+                        setState(() {});
+                        noOfAirlines++;
+                      },
+                      child: Icon(
+                        Icons.add,
+                        size: 20.0,
+                        color: Colors.brown[900],
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Airline details",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: airlineWidget.length,
+                itemBuilder: (_, index) => airlineWidget[index]),
+
             //cities and hotels
             SizedBox(
               height: 20,
@@ -329,9 +399,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
+
             InkWell(
               onTap: () {
                 int total = int.parse(visaRateController.text.toString()) *
@@ -926,7 +994,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               color: Palette.primaryColor,
               disabledColor: Colors.grey,
               onPressed: () async {
-                final pdfFile = await Pdf.generateCreated(noOfCities);
+                for (int i = 0; i < airlineController.length; i++) {
+                  allFlights += airlineController[i].text + "\n";
+                }
+                final pdfFile = await Pdf.generateCreated();
 
                 await Pdf.openFile(pdfFile).then((value) {
                   print('opendone');
@@ -1135,7 +1206,7 @@ class HotelsDetailsWidget extends StatelessWidget {
                 },
                 child: CustomTextFieldHint(
                   label: "Hotel " + (index + 1).toString() + " check out",
-                  controller: checkInController[index],
+                  controller: checkOutController[index],
                   placeholder: "Eg: 01-01-23",
                   isValid: true,
                   errorText: "Password must upto 6 characters",
@@ -1301,6 +1372,34 @@ class HotelsDetailsWidget extends StatelessWidget {
         ),
         SizedBox(
           height: 10,
+        ),
+        Divider(
+          thickness: 2,
+          color: Colors.grey,
+        ),
+      ],
+    );
+  }
+}
+
+class AirlineWidget extends StatelessWidget {
+  int index;
+  AirlineWidget({required this.index, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CustomTextFieldHint(
+          label: "Fligt details",
+          controller: airlineController[index],
+          placeholder: "Eg: Saudi Airline 7895",
+          isValid: true,
+          errorText: "Password must upto 6 characters",
+          hint: "",
+          onChanged: () {
+            return false;
+          },
         ),
         Divider(
           thickness: 2,

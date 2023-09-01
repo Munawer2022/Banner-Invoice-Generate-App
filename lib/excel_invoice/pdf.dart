@@ -8,7 +8,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/widgets.dart';
 
 class Pdf {
-  static Future generateCreated(noOfCities) async {
+  static Future generateCreated() async {
     final pdf = Document();
 
     pdf.addPage(MultiPage(
@@ -24,7 +24,7 @@ class Pdf {
                         child: pw.Padding(
                           padding: pw.EdgeInsets.all(20),
                           child: pw.Text(
-                            '21 DAYS',
+                            dayController.text + ' DAYS',
                             style: pw.Theme.of(context).header2,
                             textAlign: TextAlign.center,
                           ),
@@ -44,153 +44,156 @@ class Pdf {
                       pw.Padding(
                         padding: pw.EdgeInsets.all(20),
                         child: pw.Text(
-                          'U-00014 MRS ADIL',
+                          nameController.text,
                           style: pw.Theme.of(context).header2,
                           textAlign: TextAlign.center,
                         ),
                       ),
                     ]),
                   ]),
-              pw.Table(
-                  // columnWidths: {
-                  //   1: pw.FractionColumnWidth(.2),
-                  //   // 2: pw.FractionColumnWidth(.2),
-                  // },
-                  defaultVerticalAlignment:
-                      pw.TableCellVerticalAlignment.middle,
-                  border: pw.TableBorder.all(color: PdfColors.black),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.Container(
-                          color: PdfColors.grey400,
-                          child: pw.SizedBox(
-                            width: 120,
-                            child: pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
+              pw.ListView.builder(
+                  itemCount: selectedCities.length,
+                  itemBuilder: ((context, index) {
+                    return pw.Table(
+                        defaultVerticalAlignment:
+                            pw.TableCellVerticalAlignment.middle,
+                        border: pw.TableBorder.all(color: PdfColors.black),
+                        children: [
+                          pw.TableRow(children: [
+                            pw.Container(
+                                color: PdfColors.grey400,
+                                child: pw.SizedBox(
+                                  width: 120,
+                                  child: pw.Padding(
+                                    padding: pw.EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: pw.Text(
+                                      selectedCities[index].toString(),
+                                      style: pw.Theme.of(context)
+                                          .header2
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )),
+                            pw.SizedBox(
+                              width: 180,
+                              child: pw.Padding(
+                                padding: pw.EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: pw.Text(
+                                  selectedHotels[index].toString(),
+                                  style: pw.Theme.of(context).header2,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            pw.SizedBox(
+                              width: 80,
+                              // child: pw.Padding(
+                              //   padding: pw.EdgeInsets.all(20),
                               child: pw.Text(
-                                'MAKKAH HOTEL',
+                                meterController[index].text.toString(),
+                                style: pw.Theme.of(context).header2,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            pw.SizedBox(
+                              width: 80,
+                              child: pw.Text(
+                                'Meal',
                                 style: pw.Theme.of(context)
                                     .header2
                                     .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                          )),
-                      pw.SizedBox(
-                        width: 180,
-                        child: pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          child: pw.Text(
-                            'AREEJ AL FALAH',
-                            style: pw.Theme.of(context).header2,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        // child: pw.Padding(
-                        //   padding: pw.EdgeInsets.all(20),
-                        child: pw.Text(
-                          '100',
-                          style: pw.Theme.of(context).header2,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        child: pw.Text(
-                          'Meal',
-                          style: pw.Theme.of(context)
-                              .header2
-                              .copyWith(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        // child: pw.Padding(
-                        //   padding: pw.EdgeInsets.all(20),
-                        child: pw.Text(
-                          'R/0',
-                          style: pw.Theme.of(context).header2,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ])
-                  ]),
-              pw.Table(
-                  // columnWidths: {
-                  //   1: pw.FractionColumnWidth(.2),
-                  //   // 2: pw.FractionColumnWidth(.2),
-                  // },
-                  defaultVerticalAlignment:
-                      pw.TableCellVerticalAlignment.middle,
-                  border: pw.TableBorder.all(color: PdfColors.black),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.Container(
-                          color: PdfColors.grey400,
-                          child: pw.SizedBox(
-                            width: 120,
-                            child: pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
+                            pw.SizedBox(
+                              width: 80,
+                              // child: pw.Padding(
+                              //   padding: pw.EdgeInsets.all(20),
                               child: pw.Text(
-                                'MADINA HOTEL',
-                                style: pw.Theme.of(context)
-                                    .header2
-                                    .copyWith(fontWeight: FontWeight.bold),
+                                selectedMeals[index].toString(),
+                                style: pw.Theme.of(context).header2,
                                 textAlign: TextAlign.center,
                               ),
-                            ),
-                          )),
-                      pw.SizedBox(
-                        width: 180,
-                        child: pw.Padding(
-                          padding: pw.EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          child: pw.Text(
-                            'BIR AL EIMAN MARKAZIA',
-                            style: pw.Theme.of(context).header2,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        // child: pw.Padding(
-                        //   padding: pw.EdgeInsets.all(20),
-                        child: pw.Text(
-                          '300',
-                          style: pw.Theme.of(context).header2,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        child: pw.Text(
-                          'Meal',
-                          style: pw.Theme.of(context)
-                              .header2
-                              .copyWith(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      pw.SizedBox(
-                        width: 80,
-                        // child: pw.Padding(
-                        //   padding: pw.EdgeInsets.all(20),
-                        child: pw.Text(
-                          'R/0',
-                          style: pw.Theme.of(context).header2,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ])
-                  ]),
+                            )
+                          ])
+                        ]);
+                  })),
+
+              // pw.Table(
+              //     // columnWidths: {
+              //     //   1: pw.FractionColumnWidth(.2),
+              //     //   // 2: pw.FractionColumnWidth(.2),
+              //     // },
+              //     defaultVerticalAlignment:
+              //         pw.TableCellVerticalAlignment.middle,
+              //     border: pw.TableBorder.all(color: PdfColors.black),
+              //     children: [
+              //       pw.TableRow(children: [
+              //         pw.Container(
+              //             color: PdfColors.grey400,
+              //             child: pw.SizedBox(
+              //               width: 120,
+              //               child: pw.Padding(
+              //                 padding: pw.EdgeInsets.symmetric(
+              //                     horizontal: 10, vertical: 5),
+              //                 child: pw.Text(
+              //                   'MADINA HOTEL',
+              //                   style: pw.Theme.of(context)
+              //                       .header2
+              //                       .copyWith(fontWeight: FontWeight.bold),
+              //                   textAlign: TextAlign.center,
+              //                 ),
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //           width: 180,
+              //           child: pw.Padding(
+              //             padding: pw.EdgeInsets.symmetric(
+              //                 horizontal: 10, vertical: 5),
+              //             child: pw.Text(
+              //               'BIR AL EIMAN MARKAZIA',
+              //               style: pw.Theme.of(context).header2,
+              //               textAlign: TextAlign.center,
+              //             ),
+              //           ),
+              //         ),
+              //         pw.SizedBox(
+              //           width: 80,
+              //           // child: pw.Padding(
+              //           //   padding: pw.EdgeInsets.all(20),
+              //           child: pw.Text(
+              //             '300',
+              //             style: pw.Theme.of(context).header2,
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         ),
+              //         pw.SizedBox(
+              //           width: 80,
+              //           child: pw.Text(
+              //             'Meal',
+              //             style: pw.Theme.of(context)
+              //                 .header2
+              //                 .copyWith(fontWeight: FontWeight.bold),
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         ),
+              //         pw.SizedBox(
+              //           width: 80,
+              //           // child: pw.Padding(
+              //           //   padding: pw.EdgeInsets.all(20),
+              //           child: pw.Text(
+              //             'R/0',
+              //             style: pw.Theme.of(context).header2,
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         )
+              //       ])
+              //     ]),
+
               pw.Table(
                   defaultVerticalAlignment:
                       pw.TableCellVerticalAlignment.middle,
@@ -311,303 +314,234 @@ class Pdf {
                               ))),
                     ])
                   ]),
-              pw.Table(
-                  defaultVerticalAlignment:
-                      pw.TableCellVerticalAlignment.middle,
-                  border: pw.TableBorder.all(color: PdfColors.black),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              'MAK',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 130,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '06-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '12-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '2',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '270',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '6',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '82',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Align(
-                                alignment: pw.Alignment.centerRight,
-                                child: pw.Text(
-                                  '64532',
-                                  style: pw.Theme.of(context).header2.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))),
-                    ])
-                  ]),
-              pw.Table(
-                  defaultVerticalAlignment:
-                      pw.TableCellVerticalAlignment.middle,
-                  border: pw.TableBorder.all(color: PdfColors.black),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              'MED',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 130,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '06-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '12-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '2',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '270',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '6',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '82',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Align(
-                                alignment: pw.Alignment.centerRight,
-                                child: pw.Text(
-                                  '64532',
-                                  style: pw.Theme.of(context).header2.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))),
-                    ])
-                  ]),
-              pw.Table(
-                  defaultVerticalAlignment:
-                      pw.TableCellVerticalAlignment.middle,
-                  border: pw.TableBorder.all(color: PdfColors.black),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              'MAK',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 130,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '06-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '12-SEP-23',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '2',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '270',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '6',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 100,
-                          child: pw.Padding(
-                            padding: pw.EdgeInsets.symmetric(vertical: 5),
-                            child: pw.Text(
-                              '82',
-                              style: pw.Theme.of(context).header2.copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      pw.SizedBox(
-                          width: 150,
-                          child: pw.Padding(
-                              padding: pw.EdgeInsets.symmetric(vertical: 5),
-                              child: pw.Align(
-                                alignment: pw.Alignment.centerRight,
-                                child: pw.Text(
-                                  '64532',
-                                  style: pw.Theme.of(context).header2.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))),
-                    ])
-                  ]),
+              pw.ListView.builder(
+                  itemCount: selectedHotels1.length,
+                  itemBuilder: ((context, index) {
+                    return pw.Table(
+                        defaultVerticalAlignment:
+                            pw.TableCellVerticalAlignment.middle,
+                        border: pw.TableBorder.all(color: PdfColors.black),
+                        children: [
+                          pw.TableRow(children: [
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    selectedHotels1[index].toString(),
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 130,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    checkInController[index].text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 150,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    checkOutController[index].text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    selectedNoOfRooms[index].toString(),
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    rateController[index].text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    selectedNights[index].toString(),
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    currencyController[index].text.toString(),
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 150,
+                                child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Align(
+                                      alignment: pw.Alignment.centerRight,
+                                      child: pw.Text(
+                                        amountController[index].text.toString(),
+                                        style: pw.Theme.of(context)
+                                            .header2
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ))),
+                          ])
+                        ]);
+                  })),
+
+              // pw.Table(
+              //     defaultVerticalAlignment:
+              //         pw.TableCellVerticalAlignment.middle,
+              //     border: pw.TableBorder.all(color: PdfColors.black),
+              //     children: [
+              //       pw.TableRow(children: [
+              //         pw.SizedBox(
+              //             width: 100,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 'MED',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 130,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '06-SEP-23',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 150,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '12-SEP-23',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 100,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '2',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 100,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '270',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 100,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '6',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 100,
+              //             child: pw.Padding(
+              //               padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //               child: pw.Text(
+              //                 '82',
+              //                 style: pw.Theme.of(context).header2.copyWith(
+              //                     fontWeight: FontWeight.bold, fontSize: 13),
+              //                 textAlign: TextAlign.center,
+              //               ),
+              //             )),
+              //         pw.SizedBox(
+              //             width: 150,
+              //             child: pw.Padding(
+              //                 padding: pw.EdgeInsets.symmetric(vertical: 5),
+              //                 child: pw.Align(
+              //                   alignment: pw.Alignment.centerRight,
+              //                   child: pw.Text(
+              //                     '64532',
+              //                     style: pw.Theme.of(context).header2.copyWith(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 13),
+              //                     textAlign: TextAlign.center,
+              //                   ),
+              //                 ))),
+              //       ])
+              //     ]),
+
               pw.Table(
                   defaultVerticalAlignment:
                       pw.TableCellVerticalAlignment.middle,
@@ -621,7 +555,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                'UMRAH VISA ',
+                                visaNameController.text,
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -713,7 +647,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                'UMRAH VISA ',
+                                visaNameController.text,
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -725,7 +659,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              'ONLY VISA/VISA WITH BUS',
+                              visaIncludesController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -736,7 +670,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '525',
+                              visaRateController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -747,7 +681,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              visaPaxController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -758,7 +692,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              visaRiyalController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -771,7 +705,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  visaAmountController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -793,7 +727,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                'SAUDI AIRLINE',
+                                airlineNameController.text,
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -807,7 +741,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                'Hotal',
+                                'Hotel',
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -821,7 +755,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  hotelTotalController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -860,7 +794,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  visaAmountController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -899,7 +833,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  transportTotalController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -919,7 +853,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              'SV  06SEP KHIJED 0335   0540 SV 26SEP JEDKHI  0210   0825',
+                              allFlights,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 11),
                               textAlign: TextAlign.center,
@@ -946,7 +880,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '',
+                                  ziaratTotalController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -989,7 +923,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalAdultTicketController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1000,7 +934,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              adultsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1013,7 +947,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalAdultTicketController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1056,7 +990,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalAdultProfitController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1067,7 +1001,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              adultsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1080,7 +1014,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalAdultProfitController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1122,7 +1056,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalChildTicketController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1133,7 +1067,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              childsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1146,7 +1080,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalChildTicketController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1194,7 +1128,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalChildProfitController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1205,7 +1139,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              childsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1218,7 +1152,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalChildProfitController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1249,7 +1183,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              adultsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1260,7 +1194,13 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              ((int.parse(perCostController.text) +
+                                          int.parse(
+                                              totalAdultTicketController.text) +
+                                          int.parse(totalAdultProfitController
+                                              .text)) *
+                                      int.parse(adultsController.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1294,7 +1234,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalInfantTicketController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1305,7 +1245,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              infantsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1318,7 +1258,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalInfantTicketController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1349,7 +1289,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              childsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1360,7 +1300,13 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              ((int.parse(perCostController.text) +
+                                          int.parse(
+                                              totalChildTicketController.text) +
+                                          int.parse(totalChildProfitController
+                                              .text)) *
+                                      int.parse(childsController.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1394,7 +1340,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalInfantProfitController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1405,7 +1351,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              infantsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1418,7 +1364,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalInfantProfitController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1449,7 +1395,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              infantsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1460,7 +1406,13 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              ((((int.parse(totalInfantVisaController.text) +
+                                          int.parse(totalInfantTicketController
+                                              .text) +
+                                          int.parse(totalInfantProfitController
+                                              .text))) *
+                                      int.parse(infantsController.text)))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1494,7 +1446,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              totalInfantVisaController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1505,7 +1457,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '82',
+                              infantsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1518,7 +1470,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  totalInfantVisaController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1564,7 +1516,7 @@ class Pdf {
                                 child: pw.Align(
                                   alignment: pw.Alignment.centerRight,
                                   child: pw.Text(
-                                    '64532',
+                                    grandTotalController.text,
                                     style:
                                         pw.Theme.of(context).header2.copyWith(
                                               color: PdfColors.white,
@@ -1603,7 +1555,25 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  '64532',
+                                  (((int.parse(perCostController.text) +
+                                                  int.parse(totalAdultTicketController
+                                                      .text) +
+                                                  int.parse(totalAdultProfitController
+                                                      .text)) *
+                                              int.parse(
+                                                  adultsController.text)) +
+                                          ((int.parse(perCostController.text) +
+                                                  int.parse(totalChildTicketController
+                                                      .text) +
+                                                  int.parse(totalChildProfitController
+                                                      .text)) *
+                                              int.parse(
+                                                  childsController.text)) +
+                                          ((int.parse(perCostController.text) +
+                                                  int.parse(totalInfantTicketController.text) +
+                                                  int.parse(totalInfantProfitController.text)) *
+                                              int.parse(infantsController.text)))
+                                      .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1633,7 +1603,10 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '6',
+                              (int.parse(adultsController.text) +
+                                      int.parse(childsController.text) +
+                                      int.parse(infantsController.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1646,7 +1619,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '357829',
+                                  perCostController.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1694,7 +1667,12 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  (int.parse(perCostController.text) +
+                                          int.parse(
+                                              totalAdultTicketController.text) +
+                                          int.parse(
+                                              totalAdultProfitController.text))
+                                      .toStringAsFixed(0),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1725,7 +1703,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              adultsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1736,7 +1714,17 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              (((int.parse(perCostController.text) +
+                                              int.parse(
+                                                  totalAdultTicketController
+                                                      .text) +
+                                              int.parse(
+                                                  totalAdultProfitController
+                                                      .text)) *
+                                          int.parse(adultsController.text)) -
+                                      int.parse(
+                                          totalAdultProfitController1.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1767,7 +1755,12 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  ((int.parse(perCostController.text) +
+                                          int.parse(
+                                              totalChildTicketController.text) +
+                                          int.parse(
+                                              totalChildProfitController.text)))
+                                      .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1798,7 +1791,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              childsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1809,7 +1802,17 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              (((int.parse(perCostController.text) +
+                                              int.parse(
+                                                  totalChildTicketController
+                                                      .text) +
+                                              int.parse(
+                                                  totalChildProfitController
+                                                      .text)) *
+                                          int.parse(childsController.text)) -
+                                      int.parse(
+                                          totalChildProfitController1.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1840,7 +1843,12 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  '64532',
+                                  ((int.parse(totalInfantVisaController.text) +
+                                          int.parse(totalInfantTicketController
+                                              .text) +
+                                          int.parse(totalInfantProfitController
+                                              .text)))
+                                      .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1871,7 +1879,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3',
+                              infantsController.text,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1882,7 +1890,17 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              '3527283',
+                              ((((int.parse(totalInfantVisaController.text) +
+                                              int.parse(
+                                                  totalInfantTicketController
+                                                      .text) +
+                                              int.parse(
+                                                  totalInfantProfitController
+                                                      .text))) *
+                                          int.parse(infantsController.text)) -
+                                      int.parse(
+                                          totalInfantProfitController1.text))
+                                  .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1920,7 +1938,27 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  '64532',
+                                  ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) -
+                                              int.parse(
+                                                  totalAdultProfitController1
+                                                      .text)) +
+                                          ((int.parse(perCostController.text) +
+                                                  int.parse(
+                                                      totalChildTicketController
+                                                          .text) +
+                                                  int.parse(
+                                                      totalChildProfitController
+                                                          .text)) *
+                                              int.parse(
+                                                  childsController.text)) -
+                                          int.parse(totalChildProfitController1
+                                              .text) +
+                                          (((int.parse(totalInfantVisaController.text) +
+                                                  int.parse(totalInfantTicketController.text) +
+                                                  int.parse(totalInfantProfitController.text))) *
+                                              int.parse(infantsController.text)) -
+                                          int.parse(totalInfantProfitController1.text))
+                                      .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1959,7 +1997,30 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  '64532',
+                                  ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) *
+                                                  int.parse(
+                                                      adultsController.text)) +
+                                              ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) *
+                                                  int.parse(
+                                                      childsController.text)) +
+                                              ((int.parse(perCostController.text) +
+                                                      int.parse(totalInfantTicketController
+                                                          .text) +
+                                                      int.parse(totalInfantProfitController
+                                                          .text)) *
+                                                  int.parse(
+                                                      infantsController.text)) -
+                                              (((int.parse(perCostController.text) +
+                                                          int.parse(totalAdultTicketController.text) +
+                                                          int.parse(totalAdultProfitController.text)) *
+                                                      int.parse(adultsController.text)) -
+                                                  int.parse(totalAdultProfitController1.text)) +
+                                              ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) * int.parse(childsController.text)) -
+                                              int.parse(totalChildProfitController1.text) +
+                                              (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) -
+                                              int.parse(totalInfantProfitController1.text)) -
+                                          ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) - int.parse(totalAdultProfitController1.text)) + ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) * int.parse(childsController.text)) - int.parse(totalChildProfitController1.text) + (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) - int.parse(totalInfantProfitController1.text)))
+                                      .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),

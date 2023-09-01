@@ -106,6 +106,12 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
     double bodyWidth = double.infinity;
     double bodyHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+        // extendBodyBehindAppBar: true,
+        // appBar: AppBar(
+        //   automaticallyImplyLeading: true,
+        //   elevation: 0,
+        //   backgroundColor: Colors.transparent,
+        // ),
         body: SingleChildScrollView(
       child: Container(
         color: Palette.primaryColor.withOpacity(0.1),

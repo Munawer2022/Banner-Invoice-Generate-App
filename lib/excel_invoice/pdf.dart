@@ -14,7 +14,7 @@ class Pdf {
     pdf.addPage(MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
-              if (noOfCities == 1) pw.Text('data'),
+              // if (noOfCities == 1) pw.Text('data'),
               pw.Table(
                   border: pw.TableBorder.all(color: PdfColors.black),
                   children: [

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../utils.dart';
 
@@ -59,6 +60,17 @@ class NewBannerDownload extends StatefulWidget {
 }
 
 class _FiveBannerDownloardState extends State<NewBannerDownload> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    permission();
+  }
+
+  void permission() async {
+    await Permission.storage.request();
+  }
+
   ScreenshotController screenshotController = ScreenshotController();
 
   @override
@@ -158,44 +170,59 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                                   fontWeight: FontWeight.w900),
                             ),
                             SizedBox(height: 20),
-                            Text(
-                              widget.packageincludes,
-                              style: TextStyle(
-                                // fontSize: 15,
-                                fontFamily: 'Montserrat',
-                                color: Colors.black,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                widget.packageincludes,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Handlee',
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                             SizedBox(height: 10),
-                            Text(
-                              widget.cith1,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xff334926),
-                                  fontWeight: FontWeight.w900),
-                            ),
-                            Text(
-                              widget.hotalname1,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xff334926),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 25),
+                              child: Text(
+                                widget.cith1,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xff334926),
+                                    fontWeight: FontWeight.w900),
                               ),
                             ),
-                            Text(
-                              widget.city2,
-                              style: TextStyle(
-                                  fontSize: 16,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                widget.hotalname1,
+                                style: TextStyle(
+                                  fontSize: 18,
                                   color: Color(0xff334926),
-                                  fontWeight: FontWeight.w900),
-                            ),
-                            Text(
-                              widget.hotalname2,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xff334926),
+                                ),
                               ),
                             ),
-                            SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 25),
+                              child: Text(
+                                widget.city2,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xff334926),
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30),
+                              child: Text(
+                                widget.hotalname2,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color(0xff334926),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20),
                             Row(
                               children: [
                                 Text(

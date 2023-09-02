@@ -29,9 +29,9 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
   final hotalname2 = TextEditingController();
   final airlinename = TextEditingController();
   final withtransportorwith = TextEditingController();
-  final bycarorbus = TextEditingController();
+
   final insurance = TextEditingController();
-  final packagetype = TextEditingController();
+  final name = TextEditingController();
   final year = TextEditingController();
   final days = TextEditingController();
   final roomtype = TextEditingController();
@@ -94,7 +94,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                 CustomTextFieldHint(
                   label: "Month",
                   controller: month,
-                  placeholder: "Eg: June",
+                  placeholder: "Eg: Rabiul Awwal",
                   isValid: true,
                   errorText: "Month",
                   hint: "",
@@ -104,7 +104,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   },
                 ),
                 CustomTextFieldHint(
-                  label: "Company Name",
+                  label: "Imperial Travel & Tours",
                   controller: companyname,
                   placeholder: "Eg: Hijra Company",
                   isValid: true,
@@ -188,23 +188,11 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   },
                 ),
                 CustomTextFieldHint(
-                  label: "With Trasnport Or WithOut",
+                  label: "With Trasnport by Car",
                   controller: withtransportorwith,
                   placeholder: "Eg: With Transport",
                   isValid: true,
-                  errorText: "With Trasnport Or WithOut",
-                  hint: "",
-                  textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
-                ),
-                CustomTextFieldHint(
-                  label: "By Car or Bus",
-                  controller: bycarorbus,
-                  placeholder: "Eg: By Car",
-                  isValid: true,
-                  errorText: "By Car or Bus",
+                  errorText: "With Trasnport by Car",
                   hint: "",
                   textType: TextInputType.text,
                   onChanged: () {
@@ -224,11 +212,11 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   },
                 ),
                 CustomTextFieldHint(
-                  label: "Package Type",
-                  controller: packagetype,
-                  placeholder: "Eg: Package Type",
+                  label: "Name",
+                  controller: name,
+                  placeholder: "Eg: Umrah",
                   isValid: true,
-                  errorText: "Package Type",
+                  errorText: "name",
                   hint: "",
                   textType: TextInputType.text,
                   onChanged: () {
@@ -250,7 +238,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                 CustomTextFieldHint(
                   label: "Days",
                   controller: days,
-                  placeholder: "Eg: 12",
+                  placeholder: "Eg: 12 Days",
                   isValid: true,
                   errorText: "Days",
                   hint: "",
@@ -298,7 +286,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                 CustomTextFieldHint(
                   label: "Date",
                   controller: date,
-                  placeholder: "Eg: 12",
+                  placeholder: "Eg: 15 sept",
                   isValid: true,
                   errorText: "Date",
                   hint: "",
@@ -414,31 +402,31 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   color: Palette.primaryColor,
                   disabledColor: Colors.grey,
                   onPressed: () {
-                    AppNavigator().push(
-                        context,
-                        NewBannerDownload(
-                            makkahimage: _pickedImage!.path,
-                            madinahimage: _2pickedImage!.path,
-                            month: month.text,
-                            companyname: companyname.text,
-                            packageincludes: packageincludes.text,
-                            cith1: cith1.text,
-                            hotalname1: hotalname1.text,
-                            city2: city2.text,
-                            hotalname2: hotalname2.text,
-                            airlinename: airlinename.text,
-                            withtransportorwith: withtransportorwith.text,
-                            bycarorbus: bycarorbus.text,
-                            insurance: insurance.text,
-                            packagetype: packagetype.text,
-                            year: year.text,
-                            days: days.text,
-                            roomtype: roomtype.text,
-                            perperson: perperson.text,
-                            amount: amount.text,
-                            date: date.text,
-                            contact: contact.text,
-                            email: email.text));
+                    // AppNavigator().push(
+                    //     context,
+                    //     NewBannerDownload(
+                    //         makkahimage: _pickedImage!.path,
+                    //         madinahimage: _2pickedImage!.path,
+                    //         month: month.text,
+                    //         companyname: companyname.text,
+                    //         packageincludes: packageincludes.text,
+                    //         cith1: cith1.text,
+                    //         hotalname1: hotalname1.text,
+                    //         city2: city2.text,
+                    //         hotalname2: hotalname2.text,
+                    //         airlinename: airlinename.text,
+                    //         visatransportbybus: withtransportorwith.text,
+                    //         insurance: insurance.text,
+                    //         name: name.text,
+                    //         year: year.text,
+                    //         days: days.text,
+                    //         roomtype: roomtype.text,
+                    //         perperson: perperson.text,
+                    //         amount: amount.text,
+                    //         date: date.text,
+                    //         contact: contact.text,
+                    //         email: email.text)
+                    //         );
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),

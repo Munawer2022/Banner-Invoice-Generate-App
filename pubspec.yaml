@@ -100,6 +100,8 @@ flutter:
       - family: Oswald
         fonts:
           - asset: assets/fonts/Oswald-VariableFont_wght.ttf
+          - asset: assets/fonts/Oswald-Bold.ttf
+            weight: 900
       - family: Maragsâ
         fonts:
           - asset: assets/fonts/Maragsâ-Display.otf

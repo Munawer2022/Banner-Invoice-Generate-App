@@ -64,11 +64,6 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    permission();
-  }
-
-  void permission() async {
-    await Permission.storage.request();
   }
 
   ScreenshotController screenshotController = ScreenshotController();
@@ -88,7 +83,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
           ),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: button('Dowmloard...', () async {
+              child: button('Download', () async {
                 captureAndSave(screenshotController, context);
               }))
         ],

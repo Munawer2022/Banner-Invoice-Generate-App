@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'excel_invoice/excel-invoice-1.dart';
 import 'excel_invoice/invoice_choose_template.dart';
@@ -22,11 +23,17 @@ class Dahboard extends StatefulWidget {
 class _DahboardState extends State<Dahboard> {
   @override
   initState() {
+    permission();
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
+  }
+
+  void permission() async {
+    print('object');
+    await Permission.storage.request();
   }
 
   @override

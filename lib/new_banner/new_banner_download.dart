@@ -6,52 +6,52 @@ import 'package:screenshot/screenshot.dart';
 import '../../utils.dart';
 
 class NewBannerDownload extends StatefulWidget {
-  // final makkahimage;
-  // final madinahimage;
-  // final month;
-  // final companyname;
-  // final packageincludes;
-  // final cith1;
-  // final hotalname1;
-  // final city2;
-  // final hotalname2;
-  // final airlinename;
-  // final visatransportbybus;
+  final makkahimage;
+  final madinahimage;
+  final month;
+  final companyname;
+  final packageincludes;
+  final cith1;
+  final hotalname1;
+  final city2;
+  final hotalname2;
+  final airlinename;
+  final visatransportbybus;
 
-  // final insurance;
-  // final name;
-  // final year;
-  // final days;
-  // final roomtype;
-  // final perperson;
-  // final amount;
-  // final date;
-  // final contact;
-  // final email;
+  final insurance;
+  final name;
+  final year;
+  final days;
+  final roomtype;
+  final perperson;
+  final amount;
+  final date;
+  final contact;
+  final email;
 
   const NewBannerDownload({
     super.key,
-    // required this.makkahimage,
-    // required this.madinahimage,
-    // required this.month,
-    // required this.companyname,
-    // required this.packageincludes,
-    // required this.cith1,
-    // required this.hotalname1,
-    // required this.city2,
-    // required this.hotalname2,
-    // required this.airlinename,
-    // required this.visatransportbybus,
-    // required this.insurance,
-    // required this.name,
-    // required this.year,
-    // required this.days,
-    // required this.roomtype,
-    // required this.perperson,
-    // required this.amount,
-    // required this.date,
-    // required this.contact,
-    // required this.email,
+    required this.makkahimage,
+    required this.madinahimage,
+    required this.month,
+    required this.companyname,
+    required this.packageincludes,
+    required this.cith1,
+    required this.hotalname1,
+    required this.city2,
+    required this.hotalname2,
+    required this.airlinename,
+    required this.visatransportbybus,
+    required this.insurance,
+    required this.name,
+    required this.year,
+    required this.days,
+    required this.roomtype,
+    required this.perperson,
+    required this.amount,
+    required this.date,
+    required this.contact,
+    required this.email,
   });
 
   @override

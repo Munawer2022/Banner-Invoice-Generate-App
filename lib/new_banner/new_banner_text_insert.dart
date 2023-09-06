@@ -402,31 +402,31 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   color: Palette.primaryColor,
                   disabledColor: Colors.grey,
                   onPressed: () {
-                    // AppNavigator().push(
-                    //     context,
-                    //     NewBannerDownload(
-                    //         makkahimage: _pickedImage!.path,
-                    //         madinahimage: _2pickedImage!.path,
-                    //         month: month.text,
-                    //         companyname: companyname.text,
-                    //         packageincludes: packageincludes.text,
-                    //         cith1: cith1.text,
-                    //         hotalname1: hotalname1.text,
-                    //         city2: city2.text,
-                    //         hotalname2: hotalname2.text,
-                    //         airlinename: airlinename.text,
-                    //         visatransportbybus: withtransportorwith.text,
-                    //         insurance: insurance.text,
-                    //         name: name.text,
-                    //         year: year.text,
-                    //         days: days.text,
-                    //         roomtype: roomtype.text,
-                    //         perperson: perperson.text,
-                    //         amount: amount.text,
-                    //         date: date.text,
-                    //         contact: contact.text,
-                    //         email: email.text)
-                    //         );
+                    AppNavigator().push(
+                        context,
+                        NewBannerDownload(
+                            makkahimage: _pickedImage!.path,
+                            madinahimage: _2pickedImage!.path,
+                            month: month.text,
+                            companyname: companyname.text,
+                            packageincludes: packageincludes.text,
+                            cith1: cith1.text,
+                            hotalname1: hotalname1.text,
+                            city2: city2.text,
+                            hotalname2: hotalname2.text,
+                            airlinename: airlinename.text,
+                            visatransportbybus: withtransportorwith.text,
+                            insurance: insurance.text,
+                            name: name.text,
+                            year: year.text,
+                            days: days.text,
+                            roomtype: roomtype.text,
+                            perperson: perperson.text,
+                            amount: amount.text,
+                            date: date.text,
+                            contact: contact.text,
+                            email: email.text)
+                            );
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),

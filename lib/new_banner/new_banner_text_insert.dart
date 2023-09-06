@@ -99,9 +99,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Month",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Imperial Travel & Tours",
@@ -111,9 +109,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Company Name",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Pckage Inc",
@@ -123,9 +119,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Pckage Inc",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "City 1",
@@ -135,9 +129,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "City 1",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Hotal Name",
@@ -147,9 +139,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Hotal Name",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "City 2",
@@ -159,9 +149,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "City 2",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Second Hotal Name",
@@ -171,9 +159,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Second Hotal Name",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Airline Name",
@@ -183,9 +169,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Airline Name",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "With Trasnport by Car",
@@ -195,9 +179,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "With Trasnport by Car",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Insurance",
@@ -207,9 +189,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "insurance",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Name",
@@ -219,9 +199,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "name",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Year",
@@ -231,9 +209,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "year",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Days",
@@ -243,9 +219,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Days",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Room Type",
@@ -255,9 +229,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Room Type",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Per Person",
@@ -267,9 +239,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Per Person",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Amount",
@@ -279,9 +249,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Amount",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Date",
@@ -291,9 +259,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Date",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Contact",
@@ -303,9 +269,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Contact",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 CustomTextFieldHint(
                   label: "Email",
@@ -315,9 +279,7 @@ class _NewBannerTextInsertState extends State<NewBannerTextInsert> {
                   errorText: "Email",
                   hint: "",
                   textType: TextInputType.text,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
                 SizedBox(height: 20),
                 Row(

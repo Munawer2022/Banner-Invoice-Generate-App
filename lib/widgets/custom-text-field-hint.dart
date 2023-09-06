@@ -3,9 +3,9 @@ import "package:flutter/material.dart";
 class CustomTextFieldHint extends StatelessWidget {
   String label, placeholder, errorText, hint;
   TextEditingController controller;
-  bool isValid, enabled, obscure;
+  bool isValid, enabled, obscure, readOnly;
   TextInputType textType;
-  Function onChanged;
+  Function(String) onChanged;
   CustomTextFieldHint({
     Key? key,
     required this.label,
@@ -14,9 +14,10 @@ class CustomTextFieldHint extends StatelessWidget {
     required this.isValid,
     required this.errorText,
     required this.hint,
-    required this.onChanged,
+    required this.onChanged(String),
     this.enabled = true,
     this.obscure = false,
+    this.readOnly = false,
     this.textType = TextInputType.text,
   }) : super(key: key);
   @override
@@ -65,8 +66,10 @@ class CustomTextFieldHint extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 5),
             child: TextField(
+              onChanged: onChanged,
               obscureText: obscure,
               enabled: enabled,
+              readOnly: readOnly,
               controller: controller,
               keyboardType: textType,
               decoration: InputDecoration(

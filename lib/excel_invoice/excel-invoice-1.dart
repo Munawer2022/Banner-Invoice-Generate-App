@@ -8,7 +8,7 @@ import 'package:dropdown_search2/dropdown_search2.dart';
 import 'package:flutter/material.dart';
 // import 'package:accordion/accordion.dart';
 import 'package:intl/intl.dart';
-
+import 'package:add_comma/add_comma.dart';
 import 'pdf.dart';
 
 class ExcelInvoice1 extends StatefulWidget {
@@ -87,6 +87,107 @@ TextEditingController grandTotalController = new TextEditingController();
 TextEditingController perCostController = new TextEditingController();
 //visa details variables
 
+final putComma = addCommas(
+  separator: ',',
+);
+
+void hotelTotalCalculation(int indexX) {
+  int total = int.parse(selectedNoOfRooms[indexX].toString()) *
+      int.parse(selectedNights[indexX].toString()) *
+      int.parse(rateController[indexX].text.toString()) *
+      int.parse(currencyController[indexX].text.toString());
+
+  amountController[indexX].text = putComma(total).toString();
+  hotelTotalCalculationSum();
+}
+
+void hotelTotalCalculationSum() {
+  int total = 0;
+  for (int i = 0; i < amountController.length; i++) {
+    total += int.parse(amountController[i].text.toString().replaceAll(",", ""));
+    print(amountController[i].text);
+  }
+  print(total);
+
+  hotelTotalController.text = putComma(total).toString();
+}
+
+void visaTotalCalculation() {
+  int total = int.parse(visaRateController.text.toString()) *
+      int.parse(visaPaxController.text.toString()) *
+      int.parse(visaRiyalController.text.toString());
+  visaAmountController.text = putComma(total).toString();
+}
+
+void totalAdultCalculation1() {
+  int total = int.parse(adultsController.text) *
+      int.parse(totalAdultTicketController.text);
+  totalAdultTicketController1.text = putComma(total).toString();
+}
+
+void totalAdultCalculation2() {
+  int total = int.parse(adultsController.text) *
+      int.parse(totalAdultProfitController.text);
+  totalAdultProfitController1.text = putComma(total).toString();
+}
+
+void totalChildCalculations1() {
+  int total = int.parse(childsController.text) *
+      int.parse(totalChildTicketController.text);
+  totalChildTicketController1.text = putComma(total).toString();
+}
+
+void totalChildCalculations2() {
+  int total = int.parse(childsController.text) *
+      int.parse(totalChildProfitController.text);
+  totalChildProfitController1.text = putComma(total).toString();
+}
+
+void totalInfantCalculation1() {
+  int total = int.parse(infantsController.text) *
+      int.parse(totalInfantTicketController.text);
+  totalInfantTicketController1.text = putComma(total).toString();
+}
+
+void totalInfantCalculation2() {
+  int total = int.parse(infantsController.text) *
+      int.parse(totalInfantProfitController.text);
+  totalInfantProfitController1.text = putComma(total).toString();
+}
+
+void totalInfantCalculation3() {
+  int total = int.parse(infantsController.text) *
+      int.parse(totalInfantVisaController.text);
+  totalInfantVisaController1.text = putComma(total).toString();
+}
+
+void perPaxCalculation() {
+  double total = (int.parse(hotelTotalController.text.replaceAll(",", "")) +
+          int.parse(transportTotalController.text.replaceAll(",", "")) +
+          int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+          int.parse(visaAmountController.text.replaceAll(",", ""))) /
+      (int.parse(adultsController.text.replaceAll(",", "")) +
+          int.parse(childsController.text.replaceAll(",", "")));
+  int cal = total.toInt();
+
+  perCostController.text = putComma(cal).toString();
+}
+
+void grandTotalCalculation() {
+  int total = int.parse(hotelTotalController.text.replaceAll(",", "")) +
+      int.parse(transportTotalController.text.replaceAll(",", "")) +
+      int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+      int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
+      int.parse(totalAdultProfitController1.text.replaceAll(",", "")) +
+      int.parse(totalChildTicketController1.text.replaceAll(",", "")) +
+      int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
+      int.parse(totalInfantTicketController1.text.replaceAll(",", "")) +
+      int.parse(totalInfantProfitController1.text.replaceAll(",", "")) +
+      int.parse(totalInfantVisaController1.text.replaceAll(",", "")) +
+      int.parse(visaAmountController.text.replaceAll(",", ""));
+  grandTotalController.text = putComma(total).toString();
+}
+
 class _ExcelInvoice1State extends State<ExcelInvoice1> {
   final _headerStyle = const TextStyle(
       color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
@@ -130,9 +231,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               errorText: "Password must upto 6 characters",
               hint: "",
               textType: TextInputType.number,
-              onChanged: () {
-                return false;
-              },
+              onChanged: (value) {},
             ),
             CustomTextFieldHint(
               label: "C/O",
@@ -141,9 +240,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               isValid: true,
               errorText: "Password must upto 6 characters",
               hint: "",
-              onChanged: () {
-                return false;
-              },
+              onChanged: (value) {},
             ),
             CustomTextFieldHint(
               label: "Airline name",
@@ -152,9 +249,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               isValid: true,
               errorText: "Password must upto 6 characters",
               hint: "",
-              onChanged: () {
-                return false;
-              },
+              onChanged: (value) {},
             ),
             SizedBox(
               height: 20,
@@ -334,9 +429,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               errorText: "Password must upto 6 characters",
               hint: "",
               textType: TextInputType.text,
-              onChanged: () {
-                return false;
-              },
+              onChanged: (value) {},
             ),
             CustomTextFieldHint(
               label: "Visa with or without transport",
@@ -346,9 +439,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               errorText: "Password must upto 6 characters",
               hint: "",
               textType: TextInputType.text,
-              onChanged: () {
-                return false;
-              },
+              onChanged: (value) {},
             ),
             Row(
               children: [
@@ -361,8 +452,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      visaTotalCalculation();
                     },
                   ),
                 ),
@@ -378,8 +469,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      visaTotalCalculation();
                     },
                   ),
                 ),
@@ -395,8 +486,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      visaTotalCalculation();
                     },
                   ),
                 ),
@@ -408,10 +499,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
 
             InkWell(
               onTap: () {
-                int total = int.parse(visaRateController.text.toString()) *
-                    int.parse(visaPaxController.text.toString()) *
-                    int.parse(visaRiyalController.text.toString());
-                visaAmountController.text = total.toString();
+                // int total = int.parse(visaRateController.text.toString()) *
+                //     int.parse(visaPaxController.text.toString()) *
+                //     int.parse(visaRiyalController.text.toString());
+                // visaAmountController.text = total.toString();
               },
               child: CustomTextFieldHint(
                 label: "Visa total price",
@@ -420,21 +511,22 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                enabled: false,
+                readOnly: true,
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
+                onChanged: (value) {
+                  perPaxCalculation();
+                  grandTotalCalculation();
                 },
               ),
             ),
             InkWell(
               onTap: () {
-                int total = 0;
-                for (int i = 0; i < amountController.length; i++) {
-                  total += int.parse(amountController[i].text.toString());
-                }
+                // int total = 0;
+                // for (int i = 0; i < amountController.length; i++) {
+                //   total += int.parse(amountController[i].text.toString());
+                // }
 
-                hotelTotalController.text = total.toString();
+                // hotelTotalController.text = total.toString();
               },
               child: CustomTextFieldHint(
                 label: "Hotel total price",
@@ -443,10 +535,11 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                enabled: false,
+                readOnly: true,
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
+                onChanged: (value) {
+                  perPaxCalculation();
+                  grandTotalCalculation();
                 },
               ),
             ),
@@ -464,8 +557,9 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      perPaxCalculation();
+                      grandTotalCalculation();
                     },
                   ),
                 ),
@@ -481,8 +575,9 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      perPaxCalculation();
+                      grandTotalCalculation();
                     },
                   ),
                 ),
@@ -503,8 +598,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalAdultCalculation1();
+                      totalAdultCalculation2();
+                      perPaxCalculation();
                     },
                   ),
                 ),
@@ -520,8 +617,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalChildCalculations1();
+                      totalChildCalculations2();
+                      perPaxCalculation();
                     },
                   ),
                 ),
@@ -537,8 +636,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalInfantCalculation1();
+                      totalInfantCalculation2();
+                      totalInfantCalculation3();
                     },
                   ),
                 ),
@@ -558,8 +659,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalAdultCalculation1();
                     },
                   ),
                 ),
@@ -575,8 +676,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalAdultCalculation2();
                     },
                   ),
                 ),
@@ -591,9 +692,9 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                   child: InkWell(
                     onTap: () {
                       print(0);
-                      int total = int.parse(adultsController.text) *
-                          int.parse(totalAdultTicketController.text);
-                      totalAdultTicketController1.text = total.toString();
+                      // int total = int.parse(adultsController.text) *
+                      //     int.parse(totalAdultTicketController.text);
+                      // totalAdultTicketController1.text = total.toString();
                     },
                     child: CustomTextFieldHint(
                       label: "Total adult ticket price",
@@ -602,10 +703,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -616,21 +717,21 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      int total = int.parse(adultsController.text) *
-                          int.parse(totalAdultProfitController.text);
-                      totalAdultProfitController1.text = total.toString();
+                      // int total = int.parse(adultsController.text) *
+                      //     int.parse(totalAdultProfitController.text);
+                      // totalAdultProfitController1.text = total.toString();
                     },
                     child: CustomTextFieldHint(
-                      label: "Total adult ticket profit",
+                      label: "Total adult profit",
                       controller: totalAdultProfitController1,
                       placeholder: "Eg: 2,500",
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -651,8 +752,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalChildCalculations1();
                     },
                   ),
                 ),
@@ -668,8 +769,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalChildCalculations2();
                     },
                   ),
                 ),
@@ -682,11 +783,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               children: [
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      int total = int.parse(childsController.text) *
-                          int.parse(totalChildTicketController.text);
-                      totalChildTicketController1.text = total.toString();
-                    },
+                    onTap: () {},
                     child: CustomTextFieldHint(
                       label: "Total child ticket price",
                       controller: totalChildTicketController1,
@@ -694,10 +791,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -707,22 +804,18 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () {
-                      int total = int.parse(childsController.text) *
-                          int.parse(totalChildProfitController.text);
-                      totalChildProfitController1.text = total.toString();
-                    },
+                    onTap: () {},
                     child: CustomTextFieldHint(
-                      label: "Total child ticket profit",
+                      label: "Total child profit",
                       controller: totalChildProfitController1,
                       placeholder: "Eg: 2,500",
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -744,8 +837,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalInfantCalculation1();
                     },
                   ),
                 ),
@@ -761,8 +854,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalInfantCalculation2();
                     },
                   ),
                 ),
@@ -778,8 +871,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
-                    onChanged: () {
-                      return false;
+                    onChanged: (value) {
+                      totalInfantCalculation3();
                     },
                   ),
                 ),
@@ -793,9 +886,9 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      int total = int.parse(infantsController.text) *
-                          int.parse(totalInfantTicketController.text);
-                      totalInfantTicketController1.text = total.toString();
+                      // int total = int.parse(infantsController.text) *
+                      //     int.parse(totalInfantTicketController.text);
+                      // totalInfantTicketController1.text = total.toString();
                     },
                     child: CustomTextFieldHint(
                       label: "Total infant ticket price",
@@ -804,10 +897,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -818,21 +911,21 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      int total = int.parse(infantsController.text) *
-                          int.parse(totalInfantProfitController.text);
-                      totalInfantProfitController1.text = total.toString();
+                      // int total = int.parse(infantsController.text) *
+                      //     int.parse(totalInfantProfitController.text);
+                      // totalInfantProfitController1.text = total.toString();
                     },
                     child: CustomTextFieldHint(
-                      label: "Total infant ticket profit",
+                      label: "Total infant profit",
                       controller: totalInfantProfitController1,
                       placeholder: "Eg: 2,500",
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -843,9 +936,9 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      int total = int.parse(infantsController.text) *
-                          int.parse(totalInfantVisaController.text);
-                      totalInfantVisaController1.text = total.toString();
+                      // int total = int.parse(infantsController.text) *
+                      //     int.parse(totalInfantVisaController.text);
+                      // totalInfantVisaController1.text = total.toString();
                     },
                     child: CustomTextFieldHint(
                       label: "Total infant visa price",
@@ -854,10 +947,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       isValid: true,
                       errorText: "Password must upto 6 characters",
                       hint: "",
-                      enabled: false,
+                      readOnly: true,
                       textType: TextInputType.number,
-                      onChanged: () {
-                        return false;
+                      onChanged: (value) {
+                        grandTotalCalculation();
                       },
                     ),
                   ),
@@ -880,7 +973,26 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                   Container(
                     width: 50,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        int total = int.parse(
+                                hotelTotalController.text.replaceAll(",", "")) +
+                            int.parse(transportTotalController.text
+                                .replaceAll(",", "")) +
+                            int.parse(ziaratTotalController.text
+                                .replaceAll(",", "")) +
+                            int.parse(totalAdultTicketController1.text
+                                .replaceAll(",", "")) +
+                            int.parse(totalAdultProfitController1.text
+                                .replaceAll(",", "")) +
+                            int.parse(totalChildTicketController1.text
+                                .replaceAll(",", "")) +
+                            int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
+                            int.parse(totalInfantTicketController1.text.replaceAll(",", "")) +
+                            int.parse(totalInfantProfitController1.text.replaceAll(",", "")) +
+                            int.parse(totalInfantVisaController1.text.replaceAll(",", "")) +
+                            int.parse(visaAmountController.text.replaceAll(",", ""));
+                        grandTotalController.text = putComma(total).toString();
+                      },
                       child: Icon(
                         Icons.price_change,
                         size: 20.0,
@@ -903,18 +1015,27 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             InkWell(
               onTap: () {
-                int total = int.parse(hotelTotalController.text) +
-                    int.parse(transportTotalController.text) +
-                    int.parse(ziaratTotalController.text) +
-                    int.parse(totalAdultTicketController1.text) +
-                    int.parse(totalAdultProfitController1.text) +
-                    int.parse(totalChildTicketController1.text) +
-                    int.parse(totalChildProfitController1.text) +
-                    int.parse(totalInfantTicketController1.text) +
-                    int.parse(totalInfantProfitController1.text) +
-                    int.parse(totalInfantVisaController1.text) +
-                    int.parse(visaAmountController.text);
-                grandTotalController.text = total.toString();
+                // int total = int.parse(
+                //         hotelTotalController.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         transportTotalController.text.replaceAll(",", "")) +
+                //     int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalAdultTicketController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalAdultProfitController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalChildTicketController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalChildProfitController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalInfantTicketController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalInfantProfitController1.text.replaceAll(",", "")) +
+                //     int.parse(
+                //         totalInfantVisaController1.text.replaceAll(",", "")) +
+                //     int.parse(visaAmountController.text.replaceAll(",", ""));
+                // grandTotalController.text = putComma(total).toString();
               },
               child: CustomTextFieldHint(
                 label: "Total",
@@ -925,9 +1046,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 hint: "",
                 enabled: false,
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
-                },
+                onChanged: (value) {},
               ),
             ),
             SizedBox(
@@ -969,13 +1088,19 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             InkWell(
               onTap: () {
-                double total = (int.parse(hotelTotalController.text) +
-                        int.parse(transportTotalController.text) +
-                        int.parse(ziaratTotalController.text) +
-                        int.parse(visaAmountController.text)) /
-                    (int.parse(adultsController.text) +
-                        int.parse(childsController.text));
-                perCostController.text = total.toStringAsFixed(0);
+                // double total = (int.parse(
+                //             hotelTotalController.text.replaceAll(",", "")) +
+                //         int.parse(
+                //             transportTotalController.text.replaceAll(",", "")) +
+                //         int.parse(
+                //             ziaratTotalController.text.replaceAll(",", "")) +
+                //         int.parse(
+                //             visaAmountController.text.replaceAll(",", ""))) /
+                //     (int.parse(adultsController.text.replaceAll(",", "")) +
+                //         int.parse(childsController.text.replaceAll(",", "")));
+                // int cal = total.toInt();
+
+                // perCostController.text = putComma(cal).toString();
               },
               child: CustomTextFieldHint(
                 label: "Per Pax Hotel + Visa Cost",
@@ -986,9 +1111,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 hint: "",
                 enabled: false,
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
-                },
+                onChanged: (value) {},
               ),
             ),
             SizedBox(
@@ -1095,9 +1218,7 @@ class CityWidget extends StatelessWidget {
                 errorText: "Password must upto 6 characters",
                 hint: "",
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
-                },
+                onChanged: (value) {},
               ),
             ),
             SizedBox(width: 15),
@@ -1198,7 +1319,7 @@ class HotelsDetailsWidget extends StatelessWidget {
                   hint: "",
                   enabled: false,
                   textType: TextInputType.number,
-                  onChanged: () {},
+                  onChanged: (value) {},
                 ),
               ),
             ),
@@ -1219,7 +1340,7 @@ class HotelsDetailsWidget extends StatelessWidget {
                   hint: "",
                   enabled: false,
                   textType: TextInputType.number,
-                  onChanged: () {},
+                  onChanged: (value) {},
                 ),
               ),
             ),
@@ -1247,14 +1368,15 @@ class HotelsDetailsWidget extends StatelessWidget {
                     "09",
                     "10"
                   ],
-                  label: "No of rooms of hotel " + (index + 1).toString(),
-                  hint: "Select rooms " + index.toString(),
+                  label: "Rooms " + (index + 1).toString(),
+                  hint: "Rooms " + index.toString(),
                   popupItemDisabled: (String s) => s.startsWith('I'),
                   onChanged: (newValue) {
                     selectedNoOfRooms[index] = newValue!;
+                    hotelTotalCalculation(index);
                   },
                   selectedItem: selectedNoOfRooms.length == 0
-                      ? "Select no of rooms of hotel " + (index + 1).toString()
+                      ? "Rooms " + (index + 1).toString()
                       : selectedNoOfRooms[index]),
             ),
             SizedBox(
@@ -1296,14 +1418,15 @@ class HotelsDetailsWidget extends StatelessWidget {
                     "29",
                     "30",
                   ],
-                  label: "No of nights of hotel " + (index + 1).toString(),
-                  hint: "Select nights " + index.toString(),
+                  label: "Nights " + (index + 1).toString(),
+                  hint: "Nights " + index.toString(),
                   popupItemDisabled: (String s) => s.startsWith('I'),
                   onChanged: (newValue) {
                     selectedNights[index] = newValue!;
+                    hotelTotalCalculation(index);
                   },
                   selectedItem: selectedNights.length == 0
-                      ? "Select no of nights of hotel " + (index + 1).toString()
+                      ? "Nights " + (index + 1).toString()
                       : selectedNights[index]),
             ),
             SizedBox(
@@ -1318,8 +1441,8 @@ class HotelsDetailsWidget extends StatelessWidget {
                 errorText: "Password must upto 6 characters",
                 hint: "",
                 textType: TextInputType.number,
-                onChanged: () {
-                  return false;
+                onChanged: (value) {
+                  hotelTotalCalculation(index);
                 },
               ),
             ),
@@ -1340,7 +1463,9 @@ class HotelsDetailsWidget extends StatelessWidget {
                 errorText: "Password must upto 6 characters",
                 hint: "",
                 textType: TextInputType.number,
-                onChanged: () {},
+                onChanged: (value) {
+                  hotelTotalCalculation(index);
+                },
               ),
             ),
             SizedBox(
@@ -1349,15 +1474,11 @@ class HotelsDetailsWidget extends StatelessWidget {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  // print(selectedNoOfRooms[index].toString());
-                  // print(selectedNights[index].toString());
-                  // print(selectedRates[index].toString());
-                  // print(selectedCurrencyPrice[index].toString());
-                  int total = int.parse(selectedNoOfRooms[index].toString()) *
-                      int.parse(selectedNights[index].toString()) *
-                      int.parse(rateController[index].text.toString()) *
-                      int.parse(currencyController[index].text.toString());
-                  amountController[index].text = total.toString();
+                  // int total = int.parse(selectedNoOfRooms[index].toString()) *
+                  //     int.parse(selectedNights[index].toString()) *
+                  //     int.parse(rateController[index].text.toString()) *
+                  //     int.parse(currencyController[index].text.toString());
+                  // amountController[index].text = total.toString();
                 },
                 child: CustomTextFieldHint(
                   label: "Amount",
@@ -1366,11 +1487,9 @@ class HotelsDetailsWidget extends StatelessWidget {
                   isValid: true,
                   errorText: "Password must upto 6 characters",
                   hint: "",
-                  enabled: false,
+                  readOnly: true,
                   textType: TextInputType.number,
-                  onChanged: () {
-                    return false;
-                  },
+                  onChanged: (value) {},
                 ),
               ),
             ),
@@ -1403,9 +1522,7 @@ class AirlineWidget extends StatelessWidget {
           isValid: true,
           errorText: "Password must upto 6 characters",
           hint: "",
-          onChanged: () {
-            return false;
-          },
+          onChanged: (value) {},
         ),
         Divider(
           thickness: 2,

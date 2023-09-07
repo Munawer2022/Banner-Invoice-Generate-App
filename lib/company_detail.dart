@@ -170,21 +170,21 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
-                                    ListView.builder(
-                                        itemCount: allFlights.length,
-                                        itemBuilder: ((context, index) {
-                                          return Text(
-                                            allFlights[index].toString(),
-                                            // 'SV 06SEP KHIJED 0540 0925',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 7,
-                                              color: Colors.red.shade700,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                            ),
-                                          );
-                                        })),
+                                    // ListView.builder(
+                                    //     itemCount: allFlights.length,
+                                    //     itemBuilder: ((context, index) {
+                                    //       return Text(
+                                    //         allFlights[index].toString(),
+                                    //         // 'SV 06SEP KHIJED 0540 0925',
+                                    //         style: TextStyle(
+                                    //           fontWeight: FontWeight.bold,
+                                    //           fontSize: 7,
+                                    //           color: Colors.red.shade700,
+                                    //           decoration:
+                                    //               TextDecoration.underline,
+                                    //         ),
+                                    //       );
+                                    //     })),
                                   ],
                                 )
                               ],

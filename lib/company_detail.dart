@@ -1,4 +1,6 @@
+import 'package:banner_generate/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:screenshot/screenshot.dart';
 
 import 'excel_invoice/excel-invoice-1.dart';
 
@@ -17,15 +19,32 @@ int sum = int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
 var total = putComma(sum).toString();
 
 class _CompanyDetailState extends State<CompanyDetail> {
+  ScreenshotController screenshotController = ScreenshotController();
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size;
-    return SafeArea(child: Scaffold(body: buildStack()));
+    var size = MediaQuery.of(context).size;
+    return SafeArea(
+        child: Scaffold(
+            body: SingleChildScrollView(
+      child: Column(
+        children: [
+          Screenshot(controller: screenshotController, child: buildStack()),
+          SizedBox(
+            height: size.height * 0.04,
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: button('Download', () async {
+                captureAndSave(screenshotController, context);
+              }))
+        ],
+      ),
+    )));
   }
 
   Widget buildStack() => Container(
         color: Colors.white,
-        height: double.infinity,
+        height: 650,
         width: double.infinity,
         child: SingleChildScrollView(
           child: Padding(

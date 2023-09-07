@@ -40,6 +40,6 @@ class MyApp extends StatelessWidget {
             primarySwatch: mycolor,
             fontFamily: 'Montserrat',
             useMaterial3: true),
-        home: Dahboard());
+        home: CompanyDetail());
   }
 }

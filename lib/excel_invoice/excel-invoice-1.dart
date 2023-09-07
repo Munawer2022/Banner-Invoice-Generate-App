@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 // import 'package:accordion/controllers.dart';
+import 'package:banner_generate/company_detail.dart';
 import 'package:banner_generate/config/palette.dart';
 import 'package:banner_generate/widgets/custom-text-field-hint.dart';
 import 'package:dropdown_search2/dropdown_search2.dart';
@@ -1117,32 +1118,66 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             SizedBox(
               height: 20,
             ),
-            MaterialButton(
-              minWidth: double.infinity,
-              height: 60,
-              color: Palette.primaryColor,
-              disabledColor: Colors.grey,
-              onPressed: () async {
-                for (int i = 0; i < airlineController.length; i++) {
-                  allFlights += airlineController[i].text + "\n";
-                }
-                final pdfFile = await Pdf.generateCreated();
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MaterialButton(
+                  minWidth: 100,
+                  height: 60,
+                  color: Palette.primaryColor,
+                  disabledColor: Colors.grey,
+                  onPressed: () {
+                    // CompanyDetail();
 
-                await Pdf.openFile(pdfFile).then((value) {
-                  print('opendone');
-                }).onError((error, stackTrace) {
-                  print('error ${error}');
-                });
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Text(
-                "Generate PDF",
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    color: Colors.white),
-              ),
+                    // for (int i = 0; i < airlineController.length; i++) {
+                    //   allFlights += airlineController[i].text + "\n";
+                    // }
+                    // final pdfFile = await Pdf.generateCreated();
+
+                    // await Pdf.openFile(pdfFile).then((value) {
+                    //   print('opendone');
+                    // }).onError((error, stackTrace) {
+                    //   print('error ${error}');
+                    // });
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text(
+                    "Quotation",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.white),
+                  ),
+                ),
+                MaterialButton(
+                  minWidth: 100,
+                  height: 60,
+                  color: Palette.primaryColor,
+                  disabledColor: Colors.grey,
+                  onPressed: () async {
+                    for (int i = 0; i < airlineController.length; i++) {
+                      allFlights += airlineController[i].text + "\n";
+                    }
+                    final pdfFile = await Pdf.generateCreated();
+
+                    await Pdf.openFile(pdfFile).then((value) {
+                      print('opendone');
+                    }).onError((error, stackTrace) {
+                      print('error ${error}');
+                    });
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text(
+                    "Invoice",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.white),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 50,

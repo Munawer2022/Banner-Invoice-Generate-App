@@ -125,11 +125,10 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         fit: BoxFit.cover,
-                        image:
-                            // FileImage(File(widget.makkahimage)),
-                            AssetImage(
-                          'assets/images/3banner_iamge.jpg',
-                        ),
+                        image: FileImage(File(widget.makkahimage)),
+                        //     AssetImage(
+                        //   'assets/images/3banner_iamge.jpg',
+                        // ),
                       )),
                       child: Align(
                         alignment: Alignment.topLeft,
@@ -148,17 +147,15 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                           fit: BoxFit.cover,
-                          image:
-                              // FileImage(File(widget.madinahimage)),
-                              AssetImage(
-                            'assets/images/madina.jpg',
-                          ),
+                          image: FileImage(File(widget.madinahimage)),
+                          //     AssetImage(
+                          //   'assets/images/madina.jpg',
+                          // ),
                         )),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20, left: 20),
                           child: Text(
-                            // widget.month ??
-                            'Rabiul Awwal',
+                            widget.month ?? 'Rabiul Awwal',
                             style: TextStyle(
                               fontSize: 15,
                               fontStyle: FontStyle.italic,
@@ -203,8 +200,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                     children: [
                       SizedBox(height: 10),
                       Text(
-                        // widget.companyname ??
-                        'IMPERIAL TRAVELS & TOURS',
+                        widget.companyname ?? 'IMPERIAL TRAVELS & TOURS',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 15,
@@ -213,8 +209,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        // widget.packageincludes ??
-                        'package includes',
+                        widget.packageincludes ?? 'package includes',
                         style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.bold,
@@ -224,16 +219,14 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                       ),
                       // SizedBox(height: 10),
                       Text(
-                        // widget.cith1 ??
-                        'MAKKAH',
+                        widget.cith1 ?? 'MAKKAH',
                         style: TextStyle(
                             fontSize: 20,
                             color: Color(0xff334926),
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        // widget.hotalname1 ??
-                        'Mayar Maysor',
+                        widget.hotalname1 ?? 'Mayar Maysor',
                         style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.w100,
@@ -241,16 +234,14 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         ),
                       ),
                       Text(
-                        // widget.city2 ??
-                        'MEDINAH',
+                        widget.city2 ?? 'MEDINAH',
                         style: TextStyle(
                             fontSize: 20,
                             color: Color(0xff334926),
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        // widget.hotalname2 ??
-                        'Sama Quba',
+                        widget.hotalname2 ?? 'Sama Quba',
                         style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.w100,
@@ -263,8 +254,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            // widget.airlinename ??
-                            'ANY AIRLINE',
+                            widget.airlinename ?? 'ANY AIRLINE',
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff334926),
@@ -277,8 +267,8 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            // widget.visatransportbybus ??
-                            'VISA TRANSPORT BY BUS',
+                            widget.visatransportbybus ??
+                                'VISA TRANSPORT BY BUS',
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff334926),
@@ -291,8 +281,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            // widget.insurance ??
-                            'INSURANCE',
+                            widget.insurance ?? 'INSURANCE',
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xff334926),
@@ -312,9 +301,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                       children: [
                         // SizedBox(height: 10),
                         Text(
-                          // widget.name ??
-                          'UMRAH',
-
+                          widget.name ?? 'UMRAH',
                           style: TextStyle(
                               height: 1.0,
                               fontSize: 50,
@@ -324,10 +311,9 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         ),
                         // SizedBox(height: 20),
                         Text(
-                          '2023\n15 DAYS',
-                          // '${widget.year ?? '2023'}\n${widget.days ?? '15 DAYS'}',
+                          // '2023\n15 DAYS',
+                          '${widget.year ?? '2023'}\n${widget.days ?? '15 DAYS'}',
                           textAlign: TextAlign.center,
-
                           style: TextStyle(
                               height: 1.0,
                               fontSize: 28,
@@ -343,8 +329,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                // widget.roomtype ??
-                                'QUAD BASIS',
+                                widget.roomtype ?? 'QUAD BASIS',
                                 style: TextStyle(
                                   fontFamily: 'Oswald',
                                   // fontSize: 22,
@@ -352,8 +337,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                                 ),
                               ),
                               Text(
-                                // widget.perperson ??
-                                'PER PERSON',
+                                widget.perperson ?? 'PER PERSON',
                                 style: TextStyle(
                                   fontFamily: 'Oswald',
                                   fontSize: 16,
@@ -362,8 +346,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                                 ),
                               ),
                               Text(
-                                // widget.amount ??
-                                '200,000',
+                                widget.amount ?? '200,000',
                                 style: TextStyle(
                                   fontFamily: 'Oswald',
                                   fontSize: 22,
@@ -403,16 +386,16 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                             height: 10,
                           ),
                           Text(
-                            'book before 15 sept',
-                            //    'book before ${widget.date ?? '15 sept'}',
+                            // 'book before 15 sept',
+                            'book before ${widget.date ?? '15 sept'}',
                             style: TextStyle(
                                 fontSize: 10,
                                 color: Color(0xff334926),
                                 fontWeight: FontWeight.w900),
                           ),
                           Text(
-                            'CONTACT US : 812496218964',
-                            //  'CONTACT US : ${widget.contact ?? '812496218964'}',
+                            // 'CONTACT US : 812496218964',
+                            'CONTACT US : ${widget.contact ?? '812496218964'}',
                             style: TextStyle(
                               fontSize: 10,
                               color: Color(0xff334926),
@@ -421,8 +404,7 @@ class _FiveBannerDownloardState extends State<NewBannerDownload> {
                         ],
                       ),
                       Text(
-                        // widget.email ??
-                        'a@gmail.com',
+                        widget.email ?? 'a@gmail.com',
                         style: TextStyle(
                           fontSize: 10,
                           color: Color(0xff334926),

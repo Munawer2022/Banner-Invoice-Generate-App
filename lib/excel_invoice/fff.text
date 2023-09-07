@@ -1,0 +1,69 @@
+.replaceAll(",", "")
+
+
+putComma((((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) *
+                                              int.parse(
+                                                  adultsController.text)) +
+                                          ((int.parse(perCostController.text.replaceAll(",", "")) +
+                                                  int.parse(
+                                                      totalChildTicketController
+                                                          .text) +
+                                                  int.parse(
+                                                      totalChildProfitController
+                                                          .text)) *
+                                              int.parse(
+                                                  childsController.text)) +
+                                          ((int.parse(perCostController.text.replaceAll(",", "")) +
+                                                  int.parse(totalInfantTicketController.text) +
+                                                  int.parse(totalInfantProfitController.text)) *
+                                              int.parse(infantsController.text))))
+                                      .toString(),
+
+
+
+
+
+                                      putComma(((((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) -
+                                              int.parse(
+                                                  totalAdultProfitController1
+                                                      .text
+                                                      .replaceAll(",", ""))) +
+                                          ((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) *
+                                              int.parse(
+                                                  childsController.text)) -
+                                          int.parse(totalChildProfitController1
+                                              .text
+                                              .replaceAll(",", "")) +
+                                          (((int.parse(totalInfantVisaController.text) +
+                                                  int.parse(totalInfantTicketController.text) +
+                                                  int.parse(totalInfantProfitController.text))) *
+                                              int.parse(infantsController.text)) -
+                                          int.parse(totalInfantProfitController1.text.replaceAll(",", ""))))
+                                      .toString(),
+
+
+
+
+
+                                      putComma(((((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) +
+                                              ((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) *
+                                                  int.parse(
+                                                      childsController.text)) +
+                                              ((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text)) *
+                                                  int.parse(
+                                                      infantsController.text)) -
+                                              (((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) -
+                                                  int.parse(
+                                                      totalAdultProfitController1
+                                                          .text
+                                                          .replaceAll(
+                                                              ",", ""))) +
+                                              ((int.parse(perCostController.text.replaceAll(",", "")) +
+                                                      int.parse(totalChildTicketController.text) +
+                                                      int.parse(totalChildProfitController.text)) *
+                                                  int.parse(childsController.text)) -
+                                              int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
+                                              (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) -
+                                              int.parse(totalInfantProfitController1.text.replaceAll(",", ""))) -
+                                          ((((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) - int.parse(totalAdultProfitController1.text.replaceAll(",", ""))) + ((int.parse(perCostController.text.replaceAll(",", "")) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) * int.parse(childsController.text)) - int.parse(totalChildProfitController1.text.replaceAll(",", "")) + (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) - int.parse(totalInfantProfitController1.text.replaceAll(",", "")))))
+                                      .toString(),

@@ -11,6 +11,88 @@ class Pdf {
   static Future generateCreated() async {
     final pdf = Document();
 
+    String someCal = (int.parse(perCostController.text.replaceAll(",", "")) +
+            int.parse(totalAdultTicketController.text) +
+            int.parse(totalAdultProfitController.text))
+        .toStringAsFixed(0);
+    String? someCal1 = putComma(int.parse(someCal));
+
+    String childPerPax = ((int.parse(childsVisaCost.replaceAll(",", "")) +
+                int.parse(ziaratTotalController.text) +
+                int.parse(transportTotalController.text)) /
+            int.parse(childsController.text))
+        .toStringAsFixed(0);
+    String? someCal2 = putComma(int.parse(childPerPax));
+
+    String adultSale = putComma(
+            ((int.parse(perCostController.text.replaceAll(",", "")) +
+                    int.parse(totalAdultTicketController.text) +
+                    int.parse(totalAdultProfitController.text)) *
+                int.parse(adultsController.text)))
+        .toString();
+
+    String childSale = isChildHotel
+        ? putComma(((int.parse(childsVisaCost.replaceAll(",", "")) +
+                    int.parse(totalChildTicketController.text) +
+                    int.parse(totalChildProfitController.text)) *
+                int.parse(childsController.text)))
+            .toString()
+        : putComma(((int.parse(perCostController.text.replaceAll(",", "")) +
+                    int.parse(totalChildTicketController.text) +
+                    int.parse(totalChildProfitController.text)) *
+                int.parse(childsController.text)))
+            .toString();
+
+    String saleInfant = putComma(((((int.parse(totalInfantVisaController.text) +
+                int.parse(totalInfantTicketController.text) +
+                int.parse(totalInfantProfitController.text))) *
+            int.parse(infantsController.text))))
+        .toString();
+
+    String saleTotal = putComma((int.parse(adultSale.replaceAll(",", "")) +
+            int.parse(childSale.replaceAll(",", "")) +
+            int.parse(saleInfant.replaceAll(",", ""))))
+        .toString();
+
+    String costAdult = putComma((((int.parse(
+                        perCostController.text.replaceAll(",", "")) +
+                    int.parse(totalAdultTicketController.text) +
+                    int.parse(totalAdultProfitController.text)) *
+                int.parse(adultsController.text)) -
+            int.parse(totalAdultProfitController1.text.replaceAll(",", ""))))
+        .toString();
+
+    String costChild = isChildHotel
+        ? putComma((((int.parse(childsVisaCost.replaceAll(",", "")) +
+                        int.parse(totalChildTicketController.text) +
+                        int.parse(totalChildProfitController.text)) *
+                    int.parse(childsController.text)) -
+                int.parse(
+                    totalChildProfitController1.text.replaceAll(",", ""))))
+            .toString()
+        : putComma((((int.parse(perCostController.text.replaceAll(",", "")) +
+                        int.parse(totalChildTicketController.text) +
+                        int.parse(totalChildProfitController.text)) *
+                    int.parse(childsController.text)) -
+                int.parse(
+                    totalChildProfitController1.text.replaceAll(",", ""))))
+            .toString();
+    String costInfant = putComma(((((int.parse(totalInfantVisaController.text) +
+                    int.parse(totalInfantTicketController.text) +
+                    int.parse(totalInfantProfitController.text))) *
+                int.parse(infantsController.text)) -
+            int.parse(totalInfantProfitController1.text.replaceAll(",", ""))))
+        .toString();
+
+    String costTotal = putComma((int.parse(costAdult.replaceAll(",", "")) +
+            int.parse(costChild.replaceAll(",", "")) +
+            int.parse(costInfant.replaceAll(",", ""))))
+        .toString();
+
+    String totalProfit = putComma((int.parse(saleTotal.replaceAll(",", "")) -
+            int.parse(costTotal.replaceAll(",", ""))))
+        .toString();
+
     pdf.addPage(MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
@@ -647,7 +729,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                visaNameController.text,
+                                isChildHotel ? "For Adult" : "For All Pax",
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -714,6 +796,109 @@ class Pdf {
                               ))),
                     ])
                   ]),
+              // if not child hotel
+              isChildHotel
+                  ? pw.Table(
+                      defaultVerticalAlignment:
+                          pw.TableCellVerticalAlignment.middle,
+                      border: pw.TableBorder.all(color: PdfColors.black),
+                      children: [
+                          pw.TableRow(children: [
+                            pw.Container(
+                                color: PdfColors.grey400,
+                                child: pw.SizedBox(
+                                  width: 130,
+                                  child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Text(
+                                      "For Child",
+                                      style: pw.Theme.of(context)
+                                          .header2
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 350,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    visaIncludesController.text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    visaRateController.text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    childsController.text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    visaRiyalController.text,
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 150,
+                                child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Align(
+                                      alignment: pw.Alignment.centerRight,
+                                      child: pw.Text(
+                                        childsVisaCost,
+                                        style: pw.Theme.of(context)
+                                            .header2
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ))),
+                          ])
+                        ])
+                  : pw.SizedBox(),
+              // if no child hotel
               pw.Table(
                   defaultVerticalAlignment:
                       pw.TableCellVerticalAlignment.middle,
@@ -780,7 +965,7 @@ class Pdf {
                             child: pw.Padding(
                               padding: pw.EdgeInsets.symmetric(vertical: 5),
                               child: pw.Text(
-                                'Visa',
+                                isChildHotel ? 'Adult Visa' : 'Visa',
                                 style: pw.Theme.of(context).header2.copyWith(
                                     fontWeight: FontWeight.bold, fontSize: 13),
                                 textAlign: TextAlign.center,
@@ -803,6 +988,57 @@ class Pdf {
                               ))),
                     ])
                   ]),
+
+              //if child hotel not included
+              isChildHotel
+                  ? pw.Table(
+                      defaultVerticalAlignment:
+                          pw.TableCellVerticalAlignment.middle,
+                      border: pw.TableBorder.all(color: PdfColors.black),
+                      children: [
+                          pw.TableRow(children: [
+                            pw.SizedBox(
+                              width: 200,
+                            ),
+                            pw.Container(
+                                color: PdfColors.grey400,
+                                child: pw.SizedBox(
+                                  width: 200,
+                                  child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Text(
+                                      'Child Visa',
+                                      style: pw.Theme.of(context)
+                                          .header2
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 77,
+                                child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Align(
+                                      alignment: pw.Alignment.centerRight,
+                                      child: pw.Text(
+                                        childsVisaCost,
+                                        style: pw.Theme.of(context)
+                                            .header2
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ))),
+                          ])
+                        ])
+                  : pw.SizedBox(),
+              //if child hotel not included
               pw.Table(
                   defaultVerticalAlignment:
                       pw.TableCellVerticalAlignment.middle,
@@ -1080,7 +1316,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  totalChildTicketController.text,
+                                  totalChildTicketController1.text,
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1194,13 +1430,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              ((int.parse(perCostController.text) +
-                                          int.parse(
-                                              totalAdultTicketController.text) +
-                                          int.parse(totalAdultProfitController
-                                              .text)) *
-                                      int.parse(adultsController.text))
-                                  .toString(),
+                              adultSale,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1300,13 +1530,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              ((int.parse(perCostController.text) +
-                                          int.parse(
-                                              totalChildTicketController.text) +
-                                          int.parse(totalChildProfitController
-                                              .text)) *
-                                      int.parse(childsController.text))
-                                  .toString(),
+                              childSale,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1406,13 +1630,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              ((((int.parse(totalInfantVisaController.text) +
-                                          int.parse(totalInfantTicketController
-                                              .text) +
-                                          int.parse(totalInfantProfitController
-                                              .text))) *
-                                      int.parse(infantsController.text)))
-                                  .toString(),
+                              saleInfant,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1555,25 +1773,7 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  (((int.parse(perCostController.text) +
-                                                  int.parse(totalAdultTicketController
-                                                      .text) +
-                                                  int.parse(totalAdultProfitController
-                                                      .text)) *
-                                              int.parse(
-                                                  adultsController.text)) +
-                                          ((int.parse(perCostController.text) +
-                                                  int.parse(totalChildTicketController
-                                                      .text) +
-                                                  int.parse(totalChildProfitController
-                                                      .text)) *
-                                              int.parse(
-                                                  childsController.text)) +
-                                          ((int.parse(perCostController.text) +
-                                                  int.parse(totalInfantTicketController.text) +
-                                                  int.parse(totalInfantProfitController.text)) *
-                                              int.parse(infantsController.text)))
-                                      .toString(),
+                                  saleTotal.toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1591,7 +1791,9 @@ class Pdf {
                             child: pw.Align(
                                 alignment: pw.Alignment.centerLeft,
                                 child: pw.Text(
-                                  'Per Pax Hotel + Visa Cost',
+                                  isChildHotel
+                                      ? 'Adult Per Pax Hotel + Visa Cost'
+                                      : 'Per Pax Hotel + Visa Cost',
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1603,10 +1805,13 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              (int.parse(adultsController.text) +
-                                      int.parse(childsController.text) +
-                                      int.parse(infantsController.text))
-                                  .toString(),
+                              isChildHotel
+                                  ? putComma((int.parse(adultsController.text) +
+                                          int.parse(childsController.text) +
+                                          int.parse(infantsController.text)))
+                                      .toString()
+                                  : putComma((int.parse(adultsController.text)))
+                                      .toString(),
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1628,6 +1833,72 @@ class Pdf {
                               ))),
                     ])
                   ]),
+              //if no child hotel
+              isChildHotel
+                  ? pw.Table(
+                      defaultVerticalAlignment:
+                          pw.TableCellVerticalAlignment.middle,
+                      border: pw.TableBorder.all(color: PdfColors.black),
+                      children: [
+                          pw.TableRow(children: [
+                            pw.Container(),
+                            pw.Container(),
+
+                            // pw.SizedBox(
+                            //   width: 370,
+                            // ),
+                            pw.SizedBox(
+                                width: 270,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Align(
+                                      alignment: pw.Alignment.centerLeft,
+                                      child: pw.Text(
+                                        'Child Visa Cost',
+                                        style: pw.Theme.of(context)
+                                            .header2
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                        textAlign: TextAlign.left,
+                                      )),
+                                )),
+                            pw.SizedBox(
+                                width: 100,
+                                child: pw.Padding(
+                                  padding: pw.EdgeInsets.symmetric(vertical: 5),
+                                  child: pw.Text(
+                                    putComma(int.parse(childsController.text))
+                                        .toString(),
+                                    style: pw.Theme.of(context)
+                                        .header2
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                            pw.SizedBox(
+                                width: 140,
+                                child: pw.Padding(
+                                    padding:
+                                        pw.EdgeInsets.symmetric(vertical: 5),
+                                    child: pw.Align(
+                                      alignment: pw.Alignment.centerRight,
+                                      child: pw.Text(
+                                        someCal2.toString(),
+                                        style: pw.Theme.of(context)
+                                            .header2
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ))),
+                          ])
+                        ])
+                  : pw.SizedBox(),
+              //if not child hotel
               pw.Table(
                   defaultVerticalAlignment:
                       pw.TableCellVerticalAlignment.middle,
@@ -1667,12 +1938,7 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  (int.parse(perCostController.text) +
-                                          int.parse(
-                                              totalAdultTicketController.text) +
-                                          int.parse(
-                                              totalAdultProfitController.text))
-                                      .toStringAsFixed(0),
+                                  someCal1.toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1714,17 +1980,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              (((int.parse(perCostController.text) +
-                                              int.parse(
-                                                  totalAdultTicketController
-                                                      .text) +
-                                              int.parse(
-                                                  totalAdultProfitController
-                                                      .text)) *
-                                          int.parse(adultsController.text)) -
-                                      int.parse(
-                                          totalAdultProfitController1.text))
-                                  .toString(),
+                              costAdult,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1755,12 +2011,24 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  ((int.parse(perCostController.text) +
-                                          int.parse(
-                                              totalChildTicketController.text) +
-                                          int.parse(
-                                              totalChildProfitController.text)))
-                                      .toString(),
+                                  isChildHotel
+                                      ? putComma(((int.parse(childsVisaCost
+                                                  .replaceAll(",", "")) +
+                                              int.parse(
+                                                  totalChildTicketController
+                                                      .text) +
+                                              int.parse(
+                                                  totalChildProfitController
+                                                      .text))))
+                                          .toString()
+                                      : putComma(((int.parse(perCostController
+                                                  .text
+                                                  .replaceAll(",", "")) +
+                                              int.parse(
+                                                  totalChildTicketController
+                                                      .text) +
+                                              int.parse(totalChildProfitController.text))))
+                                          .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1802,17 +2070,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              (((int.parse(perCostController.text) +
-                                              int.parse(
-                                                  totalChildTicketController
-                                                      .text) +
-                                              int.parse(
-                                                  totalChildProfitController
-                                                      .text)) *
-                                          int.parse(childsController.text)) -
-                                      int.parse(
-                                          totalChildProfitController1.text))
-                                  .toString(),
+                              costChild,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1843,11 +2101,12 @@ class Pdf {
                               child: pw.Align(
                                 alignment: pw.Alignment.centerRight,
                                 child: pw.Text(
-                                  ((int.parse(totalInfantVisaController.text) +
+                                  putComma(((int.parse(
+                                              totalInfantVisaController.text) +
                                           int.parse(totalInfantTicketController
                                               .text) +
                                           int.parse(totalInfantProfitController
-                                              .text)))
+                                              .text))))
                                       .toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -1890,17 +2149,7 @@ class Pdf {
                           child: pw.Padding(
                             padding: pw.EdgeInsets.symmetric(vertical: 5),
                             child: pw.Text(
-                              ((((int.parse(totalInfantVisaController.text) +
-                                              int.parse(
-                                                  totalInfantTicketController
-                                                      .text) +
-                                              int.parse(
-                                                  totalInfantProfitController
-                                                      .text))) *
-                                          int.parse(infantsController.text)) -
-                                      int.parse(
-                                          totalInfantProfitController1.text))
-                                  .toString(),
+                              costInfant,
                               style: pw.Theme.of(context).header2.copyWith(
                                   fontWeight: FontWeight.bold, fontSize: 13),
                               textAlign: TextAlign.center,
@@ -1938,27 +2187,7 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) -
-                                              int.parse(
-                                                  totalAdultProfitController1
-                                                      .text)) +
-                                          ((int.parse(perCostController.text) +
-                                                  int.parse(
-                                                      totalChildTicketController
-                                                          .text) +
-                                                  int.parse(
-                                                      totalChildProfitController
-                                                          .text)) *
-                                              int.parse(
-                                                  childsController.text)) -
-                                          int.parse(totalChildProfitController1
-                                              .text) +
-                                          (((int.parse(totalInfantVisaController.text) +
-                                                  int.parse(totalInfantTicketController.text) +
-                                                  int.parse(totalInfantProfitController.text))) *
-                                              int.parse(infantsController.text)) -
-                                          int.parse(totalInfantProfitController1.text))
-                                      .toString(),
+                                  costTotal.toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -1997,30 +2226,7 @@ class Pdf {
                             child: pw.Padding(
                                 padding: pw.EdgeInsets.symmetric(vertical: 12),
                                 child: pw.Text(
-                                  ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) *
-                                                  int.parse(
-                                                      adultsController.text)) +
-                                              ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) *
-                                                  int.parse(
-                                                      childsController.text)) +
-                                              ((int.parse(perCostController.text) +
-                                                      int.parse(totalInfantTicketController
-                                                          .text) +
-                                                      int.parse(totalInfantProfitController
-                                                          .text)) *
-                                                  int.parse(
-                                                      infantsController.text)) -
-                                              (((int.parse(perCostController.text) +
-                                                          int.parse(totalAdultTicketController.text) +
-                                                          int.parse(totalAdultProfitController.text)) *
-                                                      int.parse(adultsController.text)) -
-                                                  int.parse(totalAdultProfitController1.text)) +
-                                              ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) * int.parse(childsController.text)) -
-                                              int.parse(totalChildProfitController1.text) +
-                                              (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) -
-                                              int.parse(totalInfantProfitController1.text)) -
-                                          ((((int.parse(perCostController.text) + int.parse(totalAdultTicketController.text) + int.parse(totalAdultProfitController.text)) * int.parse(adultsController.text)) - int.parse(totalAdultProfitController1.text)) + ((int.parse(perCostController.text) + int.parse(totalChildTicketController.text) + int.parse(totalChildProfitController.text)) * int.parse(childsController.text)) - int.parse(totalChildProfitController1.text) + (((int.parse(totalInfantVisaController.text) + int.parse(totalInfantTicketController.text) + int.parse(totalInfantProfitController.text))) * int.parse(infantsController.text)) - int.parse(totalInfantProfitController1.text)))
-                                      .toString(),
+                                  totalProfit.toString(),
                                   style: pw.Theme.of(context).header2.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),

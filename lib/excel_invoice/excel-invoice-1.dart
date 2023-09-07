@@ -120,6 +120,14 @@ void visaTotalCalculation() {
   visaAmountController.text = putComma(total).toString();
 }
 
+String childsVisaCost = "";
+void childVisaTotalCalculation() {
+  int total = int.parse(visaRateController.text.toString()) *
+      int.parse(childsController.text.toString()) *
+      int.parse(visaRiyalController.text.toString());
+  childsVisaCost = putComma(total).toString();
+}
+
 void totalAdultCalculation1() {
   int total = int.parse(adultsController.text) *
       int.parse(totalAdultTicketController.text);
@@ -163,31 +171,58 @@ void totalInfantCalculation3() {
 }
 
 void perPaxCalculation() {
-  double total = (int.parse(hotelTotalController.text.replaceAll(",", "")) +
-          int.parse(transportTotalController.text.replaceAll(",", "")) +
-          int.parse(ziaratTotalController.text.replaceAll(",", "")) +
-          int.parse(visaAmountController.text.replaceAll(",", ""))) /
-      (int.parse(adultsController.text.replaceAll(",", "")) +
-          int.parse(childsController.text.replaceAll(",", "")));
+  double total = 0;
+  if (isChildHotel) {
+    total = (int.parse(hotelTotalController.text.replaceAll(",", "")) +
+            int.parse(transportTotalController.text.replaceAll(",", "")) +
+            int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+            int.parse(visaAmountController.text.replaceAll(",", ""))) /
+        (int.parse(adultsController.text.replaceAll(",", "")));
+  } else {
+    total = (int.parse(hotelTotalController.text.replaceAll(",", "")) +
+            int.parse(transportTotalController.text.replaceAll(",", "")) +
+            int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+            int.parse(visaAmountController.text.replaceAll(",", ""))) /
+        (int.parse(adultsController.text.replaceAll(",", "")) +
+            int.parse(childsController.text.replaceAll(",", "")));
+  }
   int cal = total.toInt();
 
   perCostController.text = putComma(cal).toString();
 }
 
 void grandTotalCalculation() {
-  int total = int.parse(hotelTotalController.text.replaceAll(",", "")) +
-      int.parse(transportTotalController.text.replaceAll(",", "")) +
-      int.parse(ziaratTotalController.text.replaceAll(",", "")) +
-      int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
-      int.parse(totalAdultProfitController1.text.replaceAll(",", "")) +
-      int.parse(totalChildTicketController1.text.replaceAll(",", "")) +
-      int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
-      int.parse(totalInfantTicketController1.text.replaceAll(",", "")) +
-      int.parse(totalInfantProfitController1.text.replaceAll(",", "")) +
-      int.parse(totalInfantVisaController1.text.replaceAll(",", "")) +
-      int.parse(visaAmountController.text.replaceAll(",", ""));
+  int total = 0;
+  if (isChildHotel) {
+    total = int.parse(hotelTotalController.text.replaceAll(",", "")) +
+        int.parse(transportTotalController.text.replaceAll(",", "")) +
+        int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+        int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalAdultProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalChildTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantVisaController1.text.replaceAll(",", "")) +
+        int.parse(visaAmountController.text.replaceAll(",", "")) +
+        int.parse(childsVisaCost.replaceAll(",", ""));
+  } else {
+    total = int.parse(hotelTotalController.text.replaceAll(",", "")) +
+        int.parse(transportTotalController.text.replaceAll(",", "")) +
+        int.parse(ziaratTotalController.text.replaceAll(",", "")) +
+        int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalAdultProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalChildTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalChildProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantTicketController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantProfitController1.text.replaceAll(",", "")) +
+        int.parse(totalInfantVisaController1.text.replaceAll(",", "")) +
+        int.parse(visaAmountController.text.replaceAll(",", ""));
+  }
   grandTotalController.text = putComma(total).toString();
 }
+
+bool isChildHotel = false;
 
 class _ExcelInvoice1State extends State<ExcelInvoice1> {
   final _headerStyle = const TextStyle(
@@ -307,6 +342,38 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 itemBuilder: (_, index) => airlineWidget[index]),
 
             //cities and hotels
+            Divider(
+              thickness: 2,
+              color: Colors.grey,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Child hotel included?",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black),
+                  ),
+                ),
+                Expanded(
+                    child: Checkbox(
+                        //only check box
+                        value: isChildHotel, //unchecked
+                        onChanged: (bool? value) {
+                          //value returned when checkbox is clicked
+                          setState(() {
+                            isChildHotel = value!;
+                          });
+                        }))
+              ],
+            ),
+            Divider(
+              thickness: 2,
+              color: Colors.grey,
+            ),
             SizedBox(
               height: 20,
             ),
@@ -515,8 +582,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 readOnly: true,
                 textType: TextInputType.number,
                 onChanged: (value) {
-                  perPaxCalculation();
-                  grandTotalCalculation();
+                  // perPaxCalculation();
+                  // grandTotalCalculation();
                 },
               ),
             ),
@@ -539,8 +606,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 readOnly: true,
                 textType: TextInputType.number,
                 onChanged: (value) {
-                  perPaxCalculation();
-                  grandTotalCalculation();
+                  // perPaxCalculation();
+                  // grandTotalCalculation();
                 },
               ),
             ),
@@ -559,8 +626,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     hint: "",
                     textType: TextInputType.number,
                     onChanged: (value) {
-                      perPaxCalculation();
-                      grandTotalCalculation();
+                      // perPaxCalculation();
+                      // grandTotalCalculation();
                     },
                   ),
                 ),
@@ -577,8 +644,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     hint: "",
                     textType: TextInputType.number,
                     onChanged: (value) {
-                      perPaxCalculation();
-                      grandTotalCalculation();
+                      // perPaxCalculation();
+                      // grandTotalCalculation();
                     },
                   ),
                 ),
@@ -602,7 +669,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     onChanged: (value) {
                       totalAdultCalculation1();
                       totalAdultCalculation2();
-                      perPaxCalculation();
+                      // perPaxCalculation();
                     },
                   ),
                 ),
@@ -621,7 +688,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                     onChanged: (value) {
                       totalChildCalculations1();
                       totalChildCalculations2();
-                      perPaxCalculation();
+                      // perPaxCalculation();
                     },
                   ),
                 ),
@@ -707,7 +774,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -732,7 +799,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -795,7 +862,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -816,7 +883,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -901,7 +968,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -926,7 +993,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -951,7 +1018,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                       readOnly: true,
                       textType: TextInputType.number,
                       onChanged: (value) {
-                        grandTotalCalculation();
+                        // grandTotalCalculation();
                       },
                     ),
                   ),
@@ -1016,6 +1083,8 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             InkWell(
               onTap: () {
+                childVisaTotalCalculation();
+                grandTotalCalculation();
                 // int total = int.parse(
                 //         hotelTotalController.text.replaceAll(",", "")) +
                 //     int.parse(
@@ -1045,7 +1114,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                enabled: false,
+                readOnly: true,
                 textType: TextInputType.number,
                 onChanged: (value) {},
               ),
@@ -1089,6 +1158,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
             ),
             InkWell(
               onTap: () {
+                perPaxCalculation();
                 // double total = (int.parse(
                 //             hotelTotalController.text.replaceAll(",", "")) +
                 //         int.parse(
@@ -1110,7 +1180,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                enabled: false,
+                readOnly: true,
                 textType: TextInputType.number,
                 onChanged: (value) {},
               ),
@@ -1127,7 +1197,10 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                   color: Palette.primaryColor,
                   disabledColor: Colors.grey,
                   onPressed: () {
-                    // CompanyDetail();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CompanyDetail()),
+                    );
 
                     // for (int i = 0; i < airlineController.length; i++) {
                     //   allFlights += airlineController[i].text + "\n";
@@ -1156,6 +1229,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                   color: Palette.primaryColor,
                   disabledColor: Colors.grey,
                   onPressed: () async {
+                    allFlights = "";
                     for (int i = 0; i < airlineController.length; i++) {
                       allFlights += airlineController[i].text + "\n";
                     }

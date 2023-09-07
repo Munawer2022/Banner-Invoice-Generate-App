@@ -340,7 +340,38 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: airlineWidget.length,
                 itemBuilder: (_, index) => airlineWidget[index]),
-
+            SizedBox(
+              height: 10,
+            ),
+            airlineWidget.length > 1
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Delete Airline Details",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            airlineWidget.removeLast();
+                            airlineController.removeLast();
+                            noOfAirlines--;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            size: 20.0,
+                            color: Colors.brown[900],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : SizedBox(),
             //cities and hotels
             Divider(
               thickness: 2,
@@ -351,7 +382,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               children: [
                 Expanded(
                   child: Text(
-                    "Child hotel included?",
+                    "Child hotel not included?",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
@@ -427,6 +458,39 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 itemCount: cityWidget.length,
                 itemBuilder: (_, index) => cityWidget[index]),
             //cities and hotels
+            SizedBox(
+              height: 10,
+            ),
+            cityWidget.length > 1
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Delete city and hotel",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            cityWidget.removeLast();
+
+                            meterController.removeLast();
+                            noOfCities--;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            size: 20.0,
+                            color: Colors.brown[900],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : SizedBox(),
             //hotels details
             SizedBox(
               height: 20,
@@ -486,6 +550,42 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 itemCount: hotelsDetailsWidget.length,
                 itemBuilder: (_, index) => hotelsDetailsWidget[index]),
             //hotels details
+            hotelsDetailsWidget.length > 1
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Delete hotel",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            hotelsDetailsWidget.removeLast();
+
+                            checkInController.removeLast();
+                            checkOutController.removeLast();
+                            currencyController.removeLast();
+                            amountController.removeLast();
+                            rateController.removeLast();
+
+                            // meterController.add(new TextEditingController());
+                            noOfHotels--;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            size: 20.0,
+                            color: Colors.brown[900],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : SizedBox(),
             SizedBox(
               height: 20,
             ),
@@ -547,7 +647,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 ),
                 Expanded(
                   child: CustomTextFieldHint(
-                    label: "Visa price",
+                    label: "Visa price (Riyal)",
                     controller: visaRiyalController,
                     placeholder: "Eg: 525",
                     isValid: true,
@@ -1625,7 +1725,7 @@ class AirlineWidget extends StatelessWidget {
     return Column(
       children: [
         CustomTextFieldHint(
-          label: "Fligt details",
+          label: "Flight details",
           controller: airlineController[index],
           placeholder: "Eg: Saudi Airline 7895",
           isValid: true,

@@ -1,5 +1,6 @@
 import 'package:banner_generate/DB/service.dart';
 import 'package:banner_generate/new_banner/new_banner_text_insert.dart';
+import 'package:banner_generate/text_box/text_insert_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -14,7 +15,7 @@ import 'new_banner/new_banner_download.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // await db.countTable();
 
   runApp(MyApp());
@@ -47,6 +48,6 @@ class MyApp extends StatelessWidget {
             primarySwatch: mycolor,
             fontFamily: 'Montserrat',
             useMaterial3: true),
-        home: Dahboard());
+        home: TextInsertScreen());
   }
 }

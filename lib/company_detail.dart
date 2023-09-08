@@ -13,6 +13,52 @@ class CompanyDetail extends StatefulWidget {
   State<CompanyDetail> createState() => _CompanyDetailState();
 }
 
+String childSingle = isChildHotel
+    ? putComma(((int.parse(childsVisaCost.replaceAll(",", "")) +
+            int.parse(totalChildTicketController.text) +
+            int.parse(totalChildProfitController.text))))
+        .toString()
+    : putComma(((int.parse(perCostController.text.replaceAll(",", "")) +
+            int.parse(totalChildTicketController.text) +
+            int.parse(totalChildProfitController.text))))
+        .toString();
+
+String someCal = (int.parse(perCostController.text.replaceAll(",", "")) +
+        int.parse(totalAdultTicketController.text) +
+        int.parse(totalAdultProfitController.text))
+    .toStringAsFixed(0);
+String? someCal1 = putComma(int.parse(someCal));
+
+String adultSale = putComma(
+        ((int.parse(perCostController.text.replaceAll(",", "")) +
+                int.parse(totalAdultTicketController.text) +
+                int.parse(totalAdultProfitController.text)) *
+            int.parse(adultsController.text)))
+    .toString();
+
+String childSale = isChildHotel
+    ? putComma(((int.parse(childsVisaCost.replaceAll(",", "")) +
+                int.parse(totalChildTicketController.text) +
+                int.parse(totalChildProfitController.text)) *
+            int.parse(childsController.text)))
+        .toString()
+    : putComma(((int.parse(perCostController.text.replaceAll(",", "")) +
+                int.parse(totalChildTicketController.text) +
+                int.parse(totalChildProfitController.text)) *
+            int.parse(childsController.text)))
+        .toString();
+
+String saleInfant = putComma(((((int.parse(totalInfantVisaController.text) +
+            int.parse(totalInfantTicketController.text) +
+            int.parse(totalInfantProfitController.text))) *
+        int.parse(infantsController.text))))
+    .toString();
+
+String saleTotal = putComma((int.parse(adultSale.replaceAll(",", "")) +
+        int.parse(childSale.replaceAll(",", "")) +
+        int.parse(saleInfant.replaceAll(",", ""))))
+    .toString();
+
 int sum = int.parse(totalAdultTicketController1.text.replaceAll(",", "")) +
     int.parse(totalChildTicketController1.text.replaceAll(",", ""));
 
@@ -104,48 +150,49 @@ class _CompanyDetailState extends State<CompanyDetail> {
                               color: Color(0xff4272AC),
                             ),
                             children: [
-                              TextSpan(text: '6 Nights in '),
-                              TextSpan(
-                                  text: 'AREEJ AL FALAH or any similar ',
-                                  style: TextStyle(color: Colors.red)),
-                              TextSpan(text: 'in Makkah (2 DOUBLE Bed ROOM)')
+                              TextSpan(text: hotelNights),
+                              // TextSpan(
+                              //     text: 'AREEJ AL FALAH or any similar ',
+                              //     style: TextStyle(color: Colors.red)),
+                              // TextSpan(text: 'in Makkah (2 DOUBLE Bed ROOM)')
                             ],
                           ),
                         ),
-                        const SizedBox(height: 5),
-                        Text.rich(
-                          TextSpan(
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 7,
-                              color: Color(0xff4272AC),
-                            ),
-                            children: [
-                              TextSpan(text: '11 Nights in '),
-                              TextSpan(
-                                  text: 'BIR AL EMAN or any similar ',
-                                  style: TextStyle(color: Colors.red)),
-                              TextSpan(text: 'in Madina (2 DOUBLE Bed ROOM)')
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text.rich(
-                          TextSpan(
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 7,
-                              color: Color(0xff4272AC),
-                            ),
-                            children: [
-                              TextSpan(text: '03 Nights in '),
-                              TextSpan(
-                                  text: 'AREEJ AL FALAH or any similar ',
-                                  style: TextStyle(color: Colors.red)),
-                              TextSpan(text: 'in Makkah (2 DOUBLE Bed ROOM)')
-                            ],
-                          ),
-                        ),
+                        // const SizedBox(height: 5),
+                        // Text.rich(
+                        //   TextSpan(
+                        //     style: TextStyle(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 7,
+                        //       color: Color(0xff4272AC),
+                        //     ),
+                        //     children: [
+                        //       TextSpan(text: '11 Nights in '),
+                        //       TextSpan(
+                        //           text: 'BIR AL EMAN or any similar ',
+                        //           style: TextStyle(color: Colors.red)),
+                        //       TextSpan(text: 'in Madina (2 DOUBLE Bed ROOM)')
+                        //     ],
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 5),
+                        // Text.rich(
+                        //   TextSpan(
+                        //     style: TextStyle(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 7,
+                        //       color: Color(0xff4272AC),
+                        //     ),
+                        //     children: [
+                        //       TextSpan(text: '03 Nights in '),
+                        //       TextSpan(
+                        //           text: 'AREEJ AL FALAH or any similar ',
+                        //           style: TextStyle(color: Colors.red)),
+                        //       TextSpan(text: 'in Makkah (2 DOUBLE Bed ROOM)')
+                        //     ],
+                        //   ),
+                        // ),
+                       
                         const SizedBox(height: 7),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,7 +232,16 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 9,
-                                        color: Color(0xff4272AC),
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    Text(
+                                      allFlights,
+                                      // 'Saudi Airline',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 9,
+                                        color: Colors.blue,
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -210,7 +266,7 @@ class _CompanyDetailState extends State<CompanyDetail> {
                             ),
                             // const SizedBox(height: 15),
                             Text(
-                              '(FULL TRANSPORT BY INOVA) (HEALTH INSURANCE)',
+                              visaIncludesController.text,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 7,
@@ -218,7 +274,9 @@ class _CompanyDetailState extends State<CompanyDetail> {
                               ),
                             ),
                             Text(
-                              ' (DIRECT SAUDIA AIRLINE)',
+                              directFlight
+                                  ? ' (DIRECT '+airlineNameController.text+')'
+                                  : ' (IN DIRECT '+airlineNameController.text+')',
                               style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 10,
@@ -245,7 +303,7 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                       ),
                                     ),
                                     Text(
-                                      'Adult:          ${totalAdultTicketController.text} x ${adultsController.text} =          ${totalAdultTicketController1.text}',
+                                      'Adult:          $someCal1 x ${adultsController.text} =          $adultSale',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8,
@@ -254,7 +312,7 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                       ),
                                     ),
                                     Text(
-                                      'Child:             ${totalChildTicketController.text} x ${childsController.text} =          ${totalChildTicketController1.text}',
+                                      'Child:             $childSingle x ${childsController.text} =          $childSale',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8,
@@ -263,7 +321,7 @@ class _CompanyDetailState extends State<CompanyDetail> {
                                       ),
                                     ),
                                     Text(
-                                      'Total:                                 =          $total',
+                                      'Total:                                 =          $saleTotal',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8,

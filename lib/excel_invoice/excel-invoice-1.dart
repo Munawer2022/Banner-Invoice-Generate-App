@@ -2,6 +2,8 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 // import 'package:accordion/controllers.dart';
+import 'package:banner_generate/DB/model.dart';
+import 'package:banner_generate/DB/service.dart';
 import 'package:banner_generate/company_detail.dart';
 import 'package:banner_generate/config/palette.dart';
 import 'package:banner_generate/widgets/custom-text-field-hint.dart';
@@ -24,7 +26,7 @@ TextEditingController airlineNameController = new TextEditingController();
 List<TextEditingController> airlineController = [];
 List<AirlineWidget> airlineWidget = [];
 int noOfAirlines = 0;
-String allFlights = "";
+String allFlights = "", hotelNights = "";
 //cityWidget Variables
 
 List<CityWidget> cityWidget = [];
@@ -45,6 +47,8 @@ List<TextEditingController> currencyController = [];
 List<TextEditingController> amountController = [];
 List<TextEditingController> rateController = [];
 final selectedHotels1 = SplayTreeMap<int, String>();
+final hotelsType = SplayTreeMap<int, String>();
+final selectedHotels1Again = SplayTreeMap<int, String>();
 final selectedCheckIns = SplayTreeMap<int, String>();
 final selectedCheckOuts = SplayTreeMap<int, String>();
 final selectedNoOfRooms = SplayTreeMap<int, String>();
@@ -222,7 +226,18 @@ void grandTotalCalculation() {
   grandTotalController.text = putComma(total).toString();
 }
 
-bool isChildHotel = false;
+bool isChildHotel = false, directFlight = false, isSimilar = false;
+
+TextEditingController ziaratRiyalController = new TextEditingController();
+TextEditingController ziaratRateController = new TextEditingController();
+TextEditingController ziaratPaxController = new TextEditingController();
+
+void ziaratTotalCalculation() {
+  int total = int.parse(ziaratRateController.text.toString()) *
+      int.parse(ziaratPaxController.text.toString()) *
+      int.parse(ziaratRiyalController.text.toString());
+  ziaratTotalController.text = putComma(total).toString();
+}
 
 class _ExcelInvoice1State extends State<ExcelInvoice1> {
   final _headerStyle = const TextStyle(
@@ -401,6 +416,61 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                         }))
               ],
             ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Direct flight?",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black),
+                  ),
+                ),
+                Expanded(
+                    child: Checkbox(
+                        //only check box
+                        value: directFlight, //unchecked
+                        onChanged: (bool? value) {
+                          //value returned when checkbox is clicked
+                          setState(() {
+                            directFlight = value!;
+                          });
+                        }))
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Similar hotels?",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black),
+                  ),
+                ),
+                Expanded(
+                    child: Checkbox(
+                        //only check box
+                        value: isSimilar, //unchecked
+                        onChanged: (bool? value) {
+                          //value returned when checkbox is clicked
+                          setState(() {
+                            isSimilar = value!;
+                          });
+                        }))
+              ],
+            ),
+
             Divider(
               thickness: 2,
               color: Colors.grey,
@@ -718,10 +788,64 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
               children: [
                 Expanded(
                   child: CustomTextFieldHint(
+                    label: "Ziarat rate",
+                    controller: ziaratRateController,
+                    placeholder: "Eg: 525",
+                    isValid: true,
+                    errorText: "Password must upto 6 characters",
+                    hint: "",
+                    textType: TextInputType.number,
+                    onChanged: (value) {
+                      ziaratTotalCalculation();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: CustomTextFieldHint(
+                    label: "Ziarat Pax",
+                    controller: ziaratPaxController,
+                    placeholder: "Eg: 6",
+                    isValid: true,
+                    errorText: "Password must upto 6 characters",
+                    hint: "",
+                    textType: TextInputType.number,
+                    onChanged: (value) {
+                      ziaratTotalCalculation();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: CustomTextFieldHint(
+                    label: "Ziarat price (Riyal)",
+                    controller: ziaratRiyalController,
+                    placeholder: "Eg: 525",
+                    isValid: true,
+                    errorText: "Password must upto 6 characters",
+                    hint: "",
+                    textType: TextInputType.number,
+                    onChanged: (value) {
+                      ziaratTotalCalculation();
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                Expanded(
+                  child: CustomTextFieldHint(
                     label: "Ziarat total price",
                     controller: ziaratTotalController,
                     placeholder: "Eg: 2,500",
                     isValid: true,
+                    readOnly: true,
                     errorText: "Password must upto 6 characters",
                     hint: "",
                     textType: TextInputType.number,
@@ -1214,7 +1338,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                readOnly: true,
+                enabled: false,
                 textType: TextInputType.number,
                 onChanged: (value) {},
               ),
@@ -1280,7 +1404,7 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                 isValid: true,
                 errorText: "Password must upto 6 characters",
                 hint: "",
-                readOnly: true,
+                enabled: false,
                 textType: TextInputType.number,
                 onChanged: (value) {},
               ),
@@ -1296,22 +1420,35 @@ class _ExcelInvoice1State extends State<ExcelInvoice1> {
                   height: 60,
                   color: Palette.primaryColor,
                   disabledColor: Colors.grey,
-                  onPressed: () {
+                  onPressed: () async{
+                    //final db = SqliteDB();
+                    // print(db.createUserTable());
+                    // db.putUser();
+                    // print(await db.getAll());
+                    allFlights = "";
+                    for (int i = 0; i < airlineController.length; i++) {
+                      allFlights += airlineController[i].text + "\n";
+                    }
+                    hotelNights = "";
+                    for (int i = 0; i < hotelsDetailsWidget.length; i++) {
+                      hotelNights += selectedNights[i]! +
+                          " Nights in " +
+                          selectedHotels1Again[i]!;
+                      if (isSimilar) {
+                        hotelNights += " or any similar";
+                      }
+                      hotelNights += " in" +
+                          selectedHotels1[i]! +
+                          " (" +
+                          selectedNoOfRooms[i]! +
+                          " " +
+                          hotelsType[i]! +
+                          " Bed Room)\n";
+                    }
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => CompanyDetail()),
                     );
-
-                    // for (int i = 0; i < airlineController.length; i++) {
-                    //   allFlights += airlineController[i].text + "\n";
-                    // }
-                    // final pdfFile = await Pdf.generateCreated();
-
-                    // await Pdf.openFile(pdfFile).then((value) {
-                    //   print('opendone');
-                    // }).onError((error, stackTrace) {
-                    //   print('error ${error}');
-                    // });
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
@@ -1399,7 +1536,7 @@ class CityWidget extends StatelessWidget {
               child: DropdownSearch<String>(
                   showSearchBox: true,
                   mode: Mode.MENU,
-                  items: ["Hotel1", "Hotel2"],
+                  items: ["AREEJ AL FALAH", "BIR AL EIMAN MARKAZIA"],
                   label: "Hotel " + (index + 1).toString(),
                   hint: "Select hotel " + index.toString(),
                   popupItemDisabled: (String s) => s.startsWith('I'),
@@ -1495,16 +1632,57 @@ class HotelsDetailsWidget extends StatelessWidget {
               child: DropdownSearch<String>(
                   showSearchBox: true,
                   mode: Mode.MENU,
-                  items: ["MAK", "MED"],
+                  items: ["Makkah", "Madina"],
                   label: "Hotel " + (index + 1).toString(),
-                  hint: "Select hotel " + index.toString(),
+                  hint: "City " + index.toString(),
                   popupItemDisabled: (String s) => s.startsWith('I'),
                   onChanged: (newValue) {
                     selectedHotels1[index] = newValue!;
                   },
                   selectedItem: selectedHotels1.length == 0
-                      ? "Select hotel " + (index + 1).toString()
+                      ? "City " + (index + 1).toString()
                       : selectedHotels1[index]),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: DropdownSearch<String>(
+                  showSearchBox: true,
+                  mode: Mode.MENU,
+                  items: ["Single", "Double", "Triple", "Quad"],
+                  // label: "Hotel " + (index + 1).toString(),
+                  hint: "Type " + index.toString(),
+                  popupItemDisabled: (String s) => s.startsWith('I'),
+                  onChanged: (newValue) {
+                    hotelsType[index] = newValue!;
+                  },
+                  selectedItem: hotelsType.length == 0
+                      ? "Type " + (index + 1).toString()
+                      : hotelsType[index]),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: DropdownSearch<String>(
+                  showSearchBox: true,
+                  mode: Mode.MENU,
+                  items: ["AREEJ AL FALAH", "BIR AL EIMAN MARKAZIA	"],
+                  // label: "Hotel " + (index + 1).toString(),
+                  hint: "hotel " + index.toString(),
+                  popupItemDisabled: (String s) => s.startsWith('I'),
+                  onChanged: (newValue) {
+                    selectedHotels1Again[index] = newValue!;
+                  },
+                  selectedItem: selectedHotels1Again.length == 0
+                      ? "Hotel " + (index + 1).toString()
+                      : selectedHotels1Again[index]),
             ),
           ],
         ),

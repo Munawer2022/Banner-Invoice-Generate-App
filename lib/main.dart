@@ -1,6 +1,9 @@
+import 'package:banner_generate/DB/service.dart';
 import 'package:banner_generate/new_banner/new_banner_text_insert.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sqflite/sqflite.dart';
 import 'banner/banner/4banner_download.dart';
 import 'banner/banner_text_field/3banner_text_insert.dart';
 import 'banner/banner_text_field/4banner_text_insert.dart';
@@ -9,7 +12,11 @@ import 'dashboard.dart';
 import 'excel_invoice/excel-invoice-1.dart';
 import 'new_banner/new_banner_download.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // await db.countTable();
+
   runApp(MyApp());
 }
 

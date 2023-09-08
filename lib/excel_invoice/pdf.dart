@@ -18,7 +18,7 @@ class Pdf {
     String? someCal1 = putComma(int.parse(someCal));
 
     String childPerPax = ((int.parse(childsVisaCost.replaceAll(",", "")) +
-                int.parse(ziaratTotalController.text) +
+                int.parse(ziaratTotalController.text.replaceAll(",", "")) +
                 int.parse(transportTotalController.text)) /
             int.parse(childsController.text))
         .toStringAsFixed(0);
@@ -134,7 +134,7 @@ class Pdf {
                     ]),
                   ]),
               pw.ListView.builder(
-                  itemCount: selectedCities.length,
+                  itemCount: cityWidget.length,
                   itemBuilder: ((context, index) {
                     return pw.Table(
                         defaultVerticalAlignment:
@@ -397,7 +397,7 @@ class Pdf {
                     ])
                   ]),
               pw.ListView.builder(
-                  itemCount: selectedHotels1.length,
+                  itemCount: hotelsDetailsWidget.length,
                   itemBuilder: ((context, index) {
                     return pw.Table(
                         defaultVerticalAlignment:

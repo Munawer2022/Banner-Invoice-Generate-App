@@ -44,6 +44,7 @@ dependencies:
   dropdown_search2: ^1.0.2
   intl: ^0.17.0
   add_comma: ^0.2.0
+  path: ^1.8.3
 
 
   # The following adds the Cupertino Icons font to your application.
